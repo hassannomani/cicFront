@@ -1,0 +1,28 @@
+<div class="headerdiv">
+    <h2>Approve User</h2>
+</div>
+  
+<div class="main-container">
+    <form class="example-form" [formGroup]="designationForm" #formDir="ngForm">
+        <div class="logo"> 
+          <h3>Assign Designation!</h3>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <mat-label>
+                 Designation
+              </mat-label>
+              <mat-select matNativeControl required formControlName="designation">
+                <mat-option value="">--Select--</mat-option>
+                <mat-option *ngFor="let des of designations" [value]="des">
+                  {{des}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <app-button style="margin-left:40%"
+              [label]="buttonLabel"
+              [color]="buttonColor" 
+              [type]="buttonType"
+              (click)="assign()">
+          </app-button>
+</div>

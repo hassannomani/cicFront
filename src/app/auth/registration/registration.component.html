@@ -1,0 +1,122 @@
+<div class="main-container">
+  <form class="example-form" [formGroup]="registrationForm" #formDir="ngForm" (ngSubmit)="register()">
+    <div class="logo"> 
+      <h2>Sign Up!</h2>
+    </div>
+    <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>
+            <mat-icon>account_circle</mat-icon>
+             First Name
+          </mat-label>
+          <input
+          type="text"
+          name="firstName"
+          formControlName="firstName"
+          matInput
+          
+          />
+        </mat-form-field>
+        <br>         
+    </div>
+
+    <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>
+            <mat-icon>account_circle</mat-icon>
+             Last Name
+          </mat-label>
+          <input
+          type="text"
+          name="lastName"
+          formControlName="lastName"
+          matInput
+          
+          />
+        </mat-form-field>
+        <br>         
+    </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>
+            <mat-icon>account_circle</mat-icon>
+             Email
+          </mat-label>
+          <input
+          type="email"
+          name="username"
+          formControlName="username"
+          matInput
+          
+          />
+        </mat-form-field>
+         <span *ngIf="formDir.submitted&& registrationForm.get('username')?.invalid &&
+         registrationForm.get('username')?.errors?.['required']" style="color:red">Username is required</span><br>         
+      </div>
+
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <mat-label>
+          <mat-icon>account_circle</mat-icon>
+           Mobile
+        </mat-label>
+        <input
+        type="text"
+        name="mobile"
+        formControlName="mobile"
+        matInput
+        
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <mat-label>
+          <mat-icon>account_circle</mat-icon>
+          Password
+        </mat-label>
+        <input
+        type="password"
+        name="password"
+        formControlName="password"
+        matInput
+        
+        />
+      </mat-form-field>
+      <span *ngIf="formDir.submitted&& registrationForm.get('password')?.invalid &&
+      registrationForm.get('password')?.errors?.['required']" style="color:red">Password is required</span><br>
+    </div>
+
+    <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>
+            <mat-icon>account_circle</mat-icon>
+           Enter Password Again
+          </mat-label>
+          <input
+          type="password"
+          name="password"
+          formControlName="password"
+          matInput
+          
+          />
+        </mat-form-field>
+        <span *ngIf="formDir.submitted&& registrationForm.get('password')?.invalid &&
+        registrationForm.get('password')?.errors?.['required']" style="color:red">Password is required</span><br>
+      </div>
+    
+    <div class="btn-container">
+     
+      <app-button
+      [label]="buttonLabel"
+      [color]="buttonColor" 
+      [type]="buttonType"
+      (click)="register()"
+      ></app-button>
+    </div>
+    <p style="color:red" *ngIf="failed">{{errorMsg}}</p>
+    <!-- <mat-icon (click)="openPdf()" class="icon" *ngIf="link">attachment</mat-icon> -->
+
+  </form>
+</div>

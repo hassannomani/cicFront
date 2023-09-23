@@ -1,0 +1,158 @@
+<div class="headerdiv">
+    <h2>List of Employees</h2>
+  </div>
+  <mat-grid-list cols="3" rowHeight="3:1">
+    <form class="example-form" [formGroup]="searchForm" (ngSubmit)="employeeSearch()">    
+
+      <mat-grid-tile>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        
+        <mat-form-field class="example-full-width">
+          <mat-label>Batch</mat-label>
+          <input matInput formControlName="batch">
+        </mat-form-field>
+
+      </mat-grid-tile>
+      <mat-grid-tile>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Course Name</mat-label>
+          <input matInput formControlName="courseName">
+        </mat-form-field>
+
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Course Country</mat-label>
+          <input matInput formControlName="courseCountry">
+        </mat-form-field>
+
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Subject</mat-label>
+          <input matInput formControlName="subject">
+        </mat-form-field>
+
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Course Attended</mat-label>
+          <input matInput formControlName="courseCount">
+        </mat-form-field>
+
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Course Year</mat-label>
+          <input matInput formControlName="courseYear">
+        </mat-form-field>
+
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+          <mat-form-field class="example-full-width">
+            <mat-label>Category</mat-label>
+            <mat-select matNativeControl required formControlName="category">
+                <mat-option *ngFor="let cn of category" [value]="cn">{{cn}}</mat-option> 
+            </mat-select>
+          
+        </mat-form-field>
+      </mat-grid-tile>
+    </form>
+  </mat-grid-list>
+
+  <div class="center">
+    <app-button
+    [label]="buttonLabel1"
+    [color]="buttonColor" 
+    [type]="buttonType"
+    (click)="employeeSearch()"
+    >
+    </app-button>
+  </div>
+ 
+
+  <table mat-table [dataSource]="employeeList" class="mat-elevation-z8">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="rank">
+        <th mat-header-cell *matHeaderCellDef>Position </th>
+        <td mat-cell *matCellDef="let element"> {{element.rank}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="batch">
+        <th mat-header-cell *matHeaderCellDef> Batch</th>
+        <td mat-cell *matCellDef="let element"> {{element.batch}} </td>
+      </ng-container>
+    
+  
+      <ng-container matColumnDef="homeDistrict">
+          <th mat-header-cell *matHeaderCellDef> District </th>
+          <td mat-cell *matCellDef="let element">
+              {{element.homeDistrict}}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="courseCount">
+          <th mat-header-cell *matHeaderCellDef> No. Of Courses Attended  </th>
+          <td mat-cell *matCellDef="let element"> {{element.courseCount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateJoining">
+          <th mat-header-cell *matHeaderCellDef> Joining Date</th>
+          <td mat-cell *matCellDef="let element"> {{element.dateJoining | date}}  </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action</th>
+          <td mat-cell *matCellDef="let element"> 
+              <app-button
+              [label]="buttonLabel"
+              [color]="buttonColor" 
+              [type]="buttonType"
+              (click)="view(element.employeeId)"
+              >
+          </app-button>
+          </td>
+          </ng-container>
+          <!-- 
+          <mat-icon (click)="action(element.uuid,element.username)" class="settings">settings</mat-icon>
+          <mat-icon (click)="actionDetails(element.uuid,element.username)" class="settings">history</mat-icon>
+  
+          </td>
+  
+          
+        </ng-container> -->
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+    

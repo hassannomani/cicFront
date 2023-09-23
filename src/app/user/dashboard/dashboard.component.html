@@ -1,0 +1,10 @@
+<div>
+    <h2 style="text-align: center;margin-top: 5%;">
+      Welcome to the
+      CIC Office Management System
+    </h2>
+
+    <div class="chart-container" *ngIf="isAdmin || isAgent">
+        <canvas  id="MyChart" >{{ chart }}</canvas>
+  </div>
+</div>

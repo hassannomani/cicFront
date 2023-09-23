@@ -1,0 +1,301 @@
+<div class="headerdiv">
+    <h2>Add Employee</h2>
+  </div>
+
+  
+<mat-tab-group #tabGroup (selectedTabChange)="selectedTabChange($event)" [selectedIndex]="index">
+   
+    <form class="example-form" [formGroup]="addEmployee" (ngSubmit)="EmployeeSave()">    
+   
+
+    <mat-tab label="Basic Information"> 
+
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name">
+                    </mat-form-field>
+                </td>
+                
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Position</mat-label>
+                        <input matInput formControlName="rank">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Date of birth</mat-label>
+                    <input matInput  formControlName="dob"  [matDatepicker]="picker2">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Date of Joining</mat-label>
+                    <input matInput  formControlName="dateJoining" [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Batch</mat-label>
+                    <input matInput  formControlName="batch" type="text"  placeholder="Batch">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>Cadre No</mat-label>
+                        <input matInput  formControlName="cadreNo" type="text"  placeholder="Cadre No">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>Select Division</mat-label>
+                        <mat-select matNativeControl required formControlName="division" (selectionChange)="divisionChange($event.value)">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option *ngFor="let div of division" [value]="div.divId">{{div.name}}</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                
+                <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>Select District</mat-label>
+                        <mat-select matNativeControl required formControlName="homeDistrict" (selectionChange)="districtChange($event.value)">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option *ngFor="let dis of district" [value]="dis">{{dis.name}}</mat-option> 
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+      
+<!--     
+            <tr>
+
+
+                <td style="width: 50%;">
+                    <div class="example-full-width">
+                    <label>Attach Recent Color Photo (Passport Size)</label>
+                    <br>
+                    <input (change)="selectPhoto($event)" #fileInput type="file" id="photo">
+
+                    <app-button
+                        [label]="buttonLabel4"
+                        [color]="buttonColor4" 
+                        [type]="buttonType4"
+                        (click)="uploadPhoto()"
+                        >
+                    </app-button>
+                    <p class="success" *ngIf="photoUploaded">Photo Uploaded Successfully</p>
+                </div>
+                </td>
+            </tr> -->
+
+            <tr><app-button
+                [label]="buttonLabel1"
+                [color]="buttonColor" 
+                [type]="buttonType"
+                [disabled]="step1Success"
+                (click)="step1()"
+                >
+            </app-button></tr>
+        </table>
+    </mat-tab>
+    <mat-tab label="Education"> 
+
+        <table class="example-form" cellspacing="0">
+            <tr>
+                <h4 class="address">Education</h4>
+            </tr>
+            <ng-container formArrayName="education">
+                <ng-container *ngFor="let educationForms of educations.controls; let index = index;"  >
+
+                    <div [formGroupName]="index">
+                        <tr>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Title</mat-label>
+                                    <input matInput formControlName="degree">
+                                </mat-form-field>
+                            </td>
+                            
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Subject</mat-label>
+                                    <input matInput formControlName="subject">
+                                </mat-form-field>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Year</mat-label>
+                                    <input matInput formControlName="year">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Institute</mat-label>
+                                    <input matInput formControlName="institute">
+                                </mat-form-field>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td></td>
+                            <td>
+                                <mat-icon class="delete-btn" (click)="deleteLesson(index)" style="margin-left:88%;width: 10%;height:75px;">
+                                    delete_forever
+                                </mat-icon>
+                            </td>
+                        </tr>
+                   
+                       
+                    </div>
+                </ng-container>
+            </ng-container>
+      
+            <tr>
+                <app-button
+                    [label]="buttonLabel2"
+                    [color]="buttonColor2" 
+                    [type]="buttonType2"
+                    (click)="addAnotherEducation()"
+                    >
+                </app-button>
+            </tr>    
+
+            <tr><app-button
+                [label]="buttonLabel1"
+                [color]="buttonColor" 
+                [type]="buttonType"
+                [disabled]="step1Success"
+                (click)="step2()"
+                >
+            </app-button></tr>
+        
+        </table>
+    </mat-tab>
+
+    <mat-tab label="Courses"> 
+
+        <table class="example-form" cellspacing="0">
+            <tr>
+                <h4 class="address">Courses</h4>
+            </tr>
+            <ng-container formArrayName="courses">
+                <ng-container *ngFor="let coursesForms of courses.controls; let index = index;"  >
+
+                    <div [formGroupName]="index">
+                        <tr>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>title</mat-label>
+                                    <input matInput formControlName="title">
+                                </mat-form-field>
+                            </td>
+                            
+                            <td>
+                                <mat-form-field appearance="fill" matInput class="example-full-width">
+                                    <mat-label>Select Country</mat-label>
+                                    <mat-select matNativeControl required formControlName="country">
+                                        <mat-option value="">--Select--</mat-option>
+                                        <mat-option *ngFor="let cn of country" [value]="cn.cname">{{cn.cname}}</mat-option> 
+                                    </mat-select>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                <mat-label>Start Date</mat-label>
+                                <input matInput  formControlName="startDate"  [matDatepicker]="picker3">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+                                <mat-datepicker #picker3></mat-datepicker>
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                <mat-label>End Date</mat-label>
+                                <input matInput  formControlName="endDate" [matDatepicker]="picker4">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+                                <mat-datepicker #picker4></mat-datepicker>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Funded By</mat-label>
+                                    <input matInput formControlName="fundedBy">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Category</mat-label>
+                                    <mat-select matNativeControl required formControlName="category"  (selectionChange)="categorySelected($event.value)">
+                                        <mat-option *ngFor="let cn of category" [value]="cn">{{cn}}</mat-option> 
+                                    </mat-select>
+                                   
+                                </mat-form-field>
+                                <mat-icon class="delete-btn" (click)="deleteLesson(index)" style="margin-left:88%;width: 10%;height:75px;">
+                                    delete_forever
+                                </mat-icon>
+                            </td>
+
+
+                       
+                        </tr>
+                   
+                    
+                    </div>
+                </ng-container>
+            </ng-container>
+      
+            <tr>
+                <app-button
+                    [label]="buttonLabel2"
+                    [color]="buttonColor2" 
+                    [type]="buttonType2"
+                    (click)="addAnother()"
+                    >
+                </app-button>
+            </tr>    
+
+            <tr style="margin-top: 15px;">
+                <app-button
+                [label]="buttonLabel"
+                [color]="buttonColor" 
+                [type]="buttonType"
+                (click)="EmployeeSave()"
+                >
+            </app-button>
+            </tr>
+        
+        </table>
+    </mat-tab>
+
+ 
+    </form>
+   
+  
+    
+</mat-tab-group>

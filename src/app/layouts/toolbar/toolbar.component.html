@@ -1,0 +1,48 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <!-- <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon >menu</mat-icon>
+        </button> -->
+        <img src="../../assets/img/cic.png" alt="cic_logo" class="headerLogo">
+        <h2 class="left">
+            <!-- <img src="../../assets/img/bdlogo.png" alt="nbr_logo" *ngIf="isLoggedIn" class="headerLogo"/> -->
+
+            Central Intelligence Cell
+        </h2>
+        <div class="semileft" *ngIf="isLoggedIn">
+            
+        </div>
+        <div class="right">
+            
+            <div class="icon" *ngIf="isLoggedIn">
+                <i class="material-icons">account_circle</i>
+            </div>
+            <div class="text">
+                <h4 class="first">{{username}}</h4>
+                <h5 class="second">{{role}}</h5>
+            </div>
+          
+        </div>
+        
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav opened="true" mode="side" *ngIf="isLoggedIn">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/dashboard">Dashboard</a>
+            <app-admin-menu *ngIf="isAdmin"></app-admin-menu>
+            <app-agent-menu *ngIf="isAgent&&!isAdmin"></app-agent-menu>
+            <a mat-list-item routerLink="/logout">Log Out</a>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div [style.height]="heightReturner()">
+            <router-outlet>
+            
+            </router-outlet>
+        </div>
+       
+    </mat-sidenav-content>
+</mat-sidenav-container>

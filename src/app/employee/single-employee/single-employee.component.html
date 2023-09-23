@@ -1,0 +1,29 @@
+<div class="employee">
+    <h3><b>Name: {{employee.name}}</b></h3>
+    <h4>Position: {{employee.rank}}</h4>
+    <p>Batch: {{employee.batch}}</p>
+    <p>Cadre No: {{employee.cadreNo}}</p>
+    <p>District: {{employee.homeDistrict}}</p>
+    <p>Date of Joining: {{employee.dateJoining | date}}</p>
+    <p>Date of Birth: {{employee.dob | date}}</p>
+    <p>Courses Attendant: {{employee.courseCount}}</p>
+    <mat-divider></mat-divider>
+    <h3><b>Education</b></h3>
+    <div *ngFor="let item of employee.education;let i=index;" id="education">
+        <p>{{i+1}}. Degree Name: {{ item.degree }}</p>
+        <p>Subject: {{ item.subject }}</p>
+        <p>Passing Year: {{ item.degreeyear }}</p>
+        <p>Institution: {{ item.institution }}</p><br>
+    </div>
+    <mat-divider></mat-divider>
+    <h3><b>Courses</b></h3>
+    <div *ngFor="let item of employee.courses;let i=index;" id="courses">
+        <p>{{i+1}}. Course Name: {{ item.title }}</p>
+        <p>Country: {{ item.country }}</p>
+        <p>Funded By: {{ item.fundedBy }}</p>
+        <p>Start Date: {{ item.startDate | date }}</p>
+        <p>End Date: {{ item.endDate| date }}</p>
+        <mat-divider></mat-divider>
+
+    </div>
+</div>
