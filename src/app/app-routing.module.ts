@@ -12,6 +12,7 @@ import { ListUserComponent } from './user/list-user/list-user.component';
 import { SingleEmployeeComponent } from './employee/single-employee/single-employee.component';
 import { ApproveUsersComponent } from './user/approve-users/approve-users.component';
 import { ApproveAssignUserComponent } from './user/approve-assign-user/approve-assign-user.component';
+import { AddCaseDetailsComponent } from './case_details/add-case-details/add-case-details.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: "add-user", component: AddUserComponent},
   {path: "users", component: ListUserComponent},
   {path: "approve-users", component: ApproveUsersComponent},
-  {path: "approve-single", component: ApproveAssignUserComponent}
+  {path: "approve-single", component: ApproveAssignUserComponent},
+  {path: "add-case-details", component: AddCaseDetailsComponent}
   // {path: "add-agent", component: AddAgentComponent},
   // {path: "add-representative", component: AddRepresentativeComponent},
   // {path: "list-agents", component: ListAgentComponent},

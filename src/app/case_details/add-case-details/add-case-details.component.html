@@ -1,0 +1,129 @@
+<div class="headerdiv">
+    <h2>Add Case Details</h2>
+</div>
+
+<div class="container">
+    <form class="example-form" [formGroup]="addCaseDetails" (ngSubmit)="caseDetailsSave()">
+        
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="taxpayername">
+                    </mat-form-field>
+                </td>
+                
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>NID</mat-label>
+                        <input matInput formControlName="nidno">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>BIN</mat-label>
+                        <input matInput formControlName="bin">
+                    </mat-form-field>
+                </td>
+                
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>RJSC</mat-label>
+                        <input matInput formControlName="rjsc">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>No of Tin</mat-label>
+                        <mat-select matNativeControl required formControlName="tinmultiple" (selectionChange)="tinselection($event.value)">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option  [value]="0">Single</mat-option>   
+                            <mat-option  [value]="1">Multiple</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width" *ngIf="!multitin">
+                        <mat-label>TIN</mat-label>
+                        <input matInput formControlName="tinno">
+                    </mat-form-field>
+                </td>
+
+            </tr>
+            <ng-container formArrayName="tinnos">
+                <ng-container *ngFor="let tinForms of tinnos.controls; let index = index;"  >
+
+                    <div [formGroupName]="index">
+                        <tr>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>TIN</mat-label>
+                                    <input matInput formControlName="tin">
+                                </mat-form-field>
+                            </td>
+                            
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput formControlName="name">
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                   
+                    </div>
+                </ng-container>
+            </ng-container>
+            <tr>
+                <app-button
+                    [label]="buttonLabel"
+                    [color]="buttonColor" 
+                    [type]="buttonType"
+                    (click)="addAnother()"
+                    >
+                </app-button>
+            </tr>    
+
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Date of birth</mat-label>
+                    <input matInput  formControlName="dob"  [matDatepicker]="picker2">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Date of Joining</mat-label>
+                    <input matInput  formControlName="dateJoining" [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Batch</mat-label>
+                    <input matInput  formControlName="batch" type="text"  placeholder="Batch">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>Cadre No</mat-label>
+                        <input matInput  formControlName="cadreNo" type="text"  placeholder="Cadre No">
+                    </mat-form-field>
+                </td>
+            </tr>
+        
+          
+        </table>    
+    </form>
+</div>

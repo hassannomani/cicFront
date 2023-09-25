@@ -57,6 +57,8 @@ import { SingleEmployeeComponent } from './employee/single-employee/single-emplo
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { ApproveUsersComponent } from './user/approve-users/approve-users.component';
 import { ApproveAssignUserComponent } from './user/approve-assign-user/approve-assign-user.component';
+import { AddCaseDetailsComponent } from './case_details/add-case-details/add-case-details.component';
+import { ViewCaseDetailsComponent } from './case_details/view-case-details/view-case-details.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +113,8 @@ import { ApproveAssignUserComponent } from './user/approve-assign-user/approve-a
     RegistrationComponent,
     ApproveUsersComponent,
     ApproveAssignUserComponent,
+    AddCaseDetailsComponent,
+    ViewCaseDetailsComponent,
   ],
   imports: [
     BrowserModule,
