@@ -45,13 +45,16 @@ export class AddCaseDetailsComponent {
   
   message : string = ""
   failed: boolean = false
-  buttonLabel: string= "Approve"
+  buttonLabel: string= "Add"
+  buttonLabel2: string= "Submit"
   buttonColor: string = "primary"
   buttonType: string = "button"
   errorMsg: string = ""
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   multitin: boolean = false
+  dirty: boolean = false
+  showBanks: boolean = false
   defaultTin = {
     tin : "",
     name: ""
@@ -68,11 +71,20 @@ export class AddCaseDetailsComponent {
   }
 
   caseDetailsSave(){
-
+    console.log(this.addCaseDetails.value)
+    let string= ""
+    let tinnos: any
+    tinnos=this.addCaseDetails.value['tinnos']
+    for(let i=0;i<tinnos.length;i++)
+    string+=tinnos[i].tin+","+tinnos[i].name+","
+    
+    this.addCaseDetails.value['tinno'] = string.substring(0,(string.length-1))
+    console.log(this.addCaseDetails.value)    
   }
 
   tinselection(value:any){
     console.log(value)
+    this.dirty = true
     this.multitin = value=="1"||value==1?true:false
   }
 
@@ -93,5 +105,13 @@ export class AddCaseDetailsComponent {
         'tin' : [tinnumber.tin,[Validators.required]],
         'name' : [tinnumber.name,[Validators.required]]
     });
+  }
+
+  deleteTin(lessonIndex: number) {
+    this.tinnos.removeAt(lessonIndex);
+  }
+
+  bankSearch(value:any){
+    this.showBanks = true
   }
 }

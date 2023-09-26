@@ -12,6 +12,14 @@ h3{
 .example-full-width {
   width: 100%;
 }
+.example-semi-full-width{
+  width:82%;
+}
+.example-small-width{
+  width: 18%;
+  padding: 5%;
+    float: right;
+}
 
 td {
   padding-right: 8px;
