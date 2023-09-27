@@ -59,6 +59,8 @@ import { ApproveUsersComponent } from './user/approve-users/approve-users.compon
 import { ApproveAssignUserComponent } from './user/approve-assign-user/approve-assign-user.component';
 import { AddCaseDetailsComponent } from './case_details/add-case-details/add-case-details.component';
 import { ViewCaseDetailsComponent } from './case_details/view-case-details/view-case-details.component';
+import { AddFileTrackComponent } from './file_track/add-file-track/add-file-track.component';
+import { ViewFileTrackComponent } from './file_track/view-file-track/view-file-track.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +117,8 @@ import { ViewCaseDetailsComponent } from './case_details/view-case-details/view-
     ApproveAssignUserComponent,
     AddCaseDetailsComponent,
     ViewCaseDetailsComponent,
+    AddFileTrackComponent,
+    ViewFileTrackComponent,
   ],
   imports: [
     BrowserModule,

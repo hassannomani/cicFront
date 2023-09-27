@@ -1,0 +1,112 @@
+<div class="headerdiv">
+    <h2>Add File Track</h2>
+</div>
+
+<div class="container">
+    <form class="example-form" [formGroup]="addFileTrackDetails" (ngSubmit)="saveFileTrackDetails()">
+        
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="taxpayername" placeholder="TaxPayer Name">
+                    </mat-form-field>
+                </td>
+                
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>File No</mat-label>
+                        <input matInput formControlName="fileno" placeholder="File No">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>TIN</mat-label>
+                        <input matInput formControlName="tin" placeholder="TIN">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>BIN</mat-label>
+                        <input matInput formControlName="bin" placeholder="BIN">
+                    </mat-form-field>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>NID</mat-label>
+                        <input matInput formControlName="nid" placeholder="NID">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Rack No</mat-label>
+                        <input matInput formControlName="rackno" placeholder="Rack No">
+                    </mat-form-field>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>File Initiation Date</mat-label>
+                    <input matInput  formControlName="storagedate"  [matDatepicker]="picker2">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Jurisdiction</mat-label>
+                        <input matInput formControlName="jurisdiction"  placeholder="Jurisdiction">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Details</mat-label>
+                    <input matInput  formControlName="details" type="text"  placeholder="Details">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>Court Issue</mat-label>
+                        <mat-select matNativeControl required formControlName="courtissue">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option  [value]="true">True</mat-option>   
+                            <mat-option  [value]="false">False</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Comment</mat-label>
+                    <input matInput  formControlName="comment" type="text"  placeholder="IO">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr class="example-full-width">
+                <td>
+                    <app-button
+                        [label]="buttonLabel2"
+                        [color]="buttonColor" 
+                        [type]="buttonType"
+                        (click)="saveFileTrackDetails()">
+                    </app-button>
+                </td>
+            </tr>      
+          
+        </table>    
+    </form>
+</div>
