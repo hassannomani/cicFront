@@ -13,16 +13,7 @@ export class CommonService {
     private localStorageServc: LocalStorageService
   ) { }
 
-  private urldistrict : string ='http://localhost:8080/api/common/district';
-  private urldiv : string ='http://localhost:8080/api/common/division';
-  private urlthana : string ='http://localhost:8080/api/common/thana';
-  private urlbank : string ='http://localhost:8080/api/common/bank';
-  private urlcountry : string ='http://localhost:8080/api/common/country';
-  private urladdaddress : string ='http://localhost:8080/api/address/add';
-  private urladdbank : string ='http://localhost:8080/api/bank/add';
-  private urlbankdist : string ='http://localhost:8080/api/common/bankdist';
-  private urlcourses : string ='http://localhost:8080/api/common/course';
-  private urlcitycorp : string ='http://localhost:8080/api/common/citycorporation';
+  private common_base_house : string = 'http://localhost:8080/api/house/'
   private urlfile : string ='http://localhost:8080/api/common/file';
   private urlPhoto : string ='http://localhost:8080/api/common/photo';
   private urlfileget : string ='http://localhost:8080/api/common/file/';
@@ -30,57 +21,17 @@ export class CommonService {
   private urletin : string ='http://localhost:8080/api/etin/tin/';
 
 
-  getDistrict(): Observable<any[]>{
-    let obj = this.localStorageServc.getStorageItems()
-    if(obj.token!=""&&obj.token!=null){
-      var headers_object = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer "+ JSON.parse(obj.token) 
-        })
-  
-        const httpOptions = {
-          headers: headers_object
-        };
-        
-      return this.http.get<any[]>(this.urldistrict,httpOptions)
-    }else{
-      return this.http.get<any[]>(this.urldistrict)
-    }
-
-  }
-
-  
-  getDivision(): Observable<any[]>{
-    let obj = this.localStorageServc.getStorageItems()
-    if(obj.token!=""&&obj.token!=null){
-      var headers_object = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': "Bearer "+ JSON.parse(obj.token) 
-        })
-  
-        const httpOptions = {
-          headers: headers_object
-        };
-        
-      return this.http.get<any[]>(this.urldiv,httpOptions)
-    }else{
-      return this.http.get<any[]>(this.urldiv)
-    }
-
-  }
-
-
-
-  addCourses(formData: any): Observable<any>{
+  // getDistrict(): Observable<any[]>{
    
-    const body=JSON.stringify(formData);
 
-    const httpOptions = {
-      headers: this.httpReturner()
-    };
+  // }
+
   
-    return this.http.post<any[]>(this.urlcourses,body,httpOptions)
-  }
+  // getDivision(): Observable<any[]>{
+    
+  // }
+
+
 
   httpReturner(): any{
     let obj = this.localStorageServc.getStorageItems()
@@ -132,19 +83,7 @@ export class CommonService {
     return headers_object
 
   }
-
-  getCountry(): Observable<any[]>{
-
-    const httpOptions = {
-      headers: this.httpReturner()
-    };
   
-    return this.http.get<any[]>(this.urlcountry,httpOptions)
-    
-  }
-  
-
-
   uploadFile(file: File): Observable<any>{
 
     const httpOptions = {
@@ -198,4 +137,22 @@ export class CommonService {
     return this.http.get(this.urlPhotoget+filename, {headers, responseType: 'blob'})
 
   }
+
+  addHouse(formData: any): Observable<any>{
+    const body=JSON.stringify(formData);
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.post<any>(this.common_base_house+"addhouse",body,httpOptions)
+  }
+
+  getHouses(): Observable<any>{
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.get<any>(this.common_base_house+"gethouses",httpOptions)
+  }
+
 }

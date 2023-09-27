@@ -1,0 +1,27 @@
+<div class="headerdiv">
+    <h2>Add Customs House</h2>
+</div>
+
+<div class="container">
+    <form class="example-form" [formGroup]="addhouse">
+        
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="taxpayername" placeholder="TaxPayer Name">
+                    </mat-form-field>
+                </td>
+                
+                <td>
+                    <app-button
+                    [label]="buttonLabel"
+                    [color]="buttonColor" 
+                    [type]="buttonType"
+                    (click)="addHouse()">
+                </app-button>
+                </td>
+            </tr>
+        </table>
+    </form>

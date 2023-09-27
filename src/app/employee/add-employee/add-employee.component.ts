@@ -144,31 +144,31 @@ export class AddEmployeeComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    this.localStore = this.localStorage.getStorageItems();
-    if(this.localStore.token==""){
-      this.router.navigate(['/logout']);
-    }
-    this.onTabChanged();
-      forkJoin(
-        [this.commonService.getDistrict(),
-        this.commonService.getDivision(),
-        this.commonService.getCountry(),
-        this.userService.getRoles(),
+    // this.localStore = this.localStorage.getStorageItems();
+    // if(this.localStore.token==""){
+    //   this.router.navigate(['/logout']);
+    // }
+    // this.onTabChanged();
+    //   forkJoin(
+    //     [this.commonService.getDistrict(),
+    //     this.commonService.getDivision(),
+    //     this.commonService.getCountry(),
+    //     this.userService.getRoles(),
        
-      ])
-      .subscribe({
-        next: (data) => {
-          //console.log(data)
-          this.districtSecondary = data[0];
-          this.division = data[1];
-          this.country = data[2];
-          this.userId = JSON.parse(this.localStore.username);
-        },
-        error: (e) => {
+    //   ])
+    //   .subscribe({
+    //     next: (data) => {
+    //       //console.log(data)
+    //       this.districtSecondary = data[0];
+    //       this.division = data[1];
+    //       this.country = data[2];
+    //       this.userId = JSON.parse(this.localStore.username);
+    //     },
+    //     error: (e) => {
          
-            console.log("Error retrieving")
-        }
-      });
+    //         console.log("Error retrieving")
+    //     }
+    //   });
   }
 
   EmployeeSave(){

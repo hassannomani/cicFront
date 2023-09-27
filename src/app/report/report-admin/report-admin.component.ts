@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { AgentService } from 'src/app/services/agent-service/agent.service';
 import { RepresentativeService } from 'src/app/services/representative-service/representative.service'; 
 import { UserService } from 'src/app/services/user-service/user.service';
 import {Title} from "@angular/platform-browser";
-import { AdminService } from 'src/app/services/admin-service/admin.service';
 import { LedgerService } from 'src/app/services/ledger-service/ledger.service';
-import { CommissionService } from 'src/app/services/commission-service/commission.service';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 @Component({
@@ -41,12 +38,9 @@ export class ReportAdminComponent implements OnInit{
   })
 
   constructor(
-    private agentService: AgentService,  
     private representativeService: RepresentativeService,
     private ledgerService: LedgerService,
     private titleService:Title,
-    private adminService: AdminService,
-    private commissionServ: CommissionService,
   ){
     this.titleService.setTitle("Report");
   }
@@ -194,17 +188,7 @@ export class ReportAdminComponent implements OnInit{
   }
 
   getAllAgents(){
-    this.agentService.getAll()
-    .subscribe({
-      next: (data) => {
-        let col = [ 'name','tin','phone','registration_no','contact_email']
-        this.positiveResponse(data, col)
-      },
-      error: (e) => {
-        this.loaded = false;
-        console.log("Error retrieving")
-      }
-    });
+
   }
 
   getAllRepresentativeOfAnAgent(val: any){
@@ -227,15 +211,7 @@ export class ReportAdminComponent implements OnInit{
   }
 
   getAllLedgers(){
-    this.adminService.getAdminLedger().subscribe({
-      next: (data) => {
-        let col = ['taxpayerId','created_at','paidAmount','paymentMethod','assessmentYear','agentTin','representativeId']     
-         this.positiveResponse(data, col)
-      },
-      error: (e) => {
-        this.loaded = false
-      }
-    })
+   
   }
 
   getAllLedgerRepresentative(representative: any){
@@ -316,52 +292,21 @@ export class ReportAdminComponent implements OnInit{
   }
 
   getAllCommissions(){
-    this.commissionServ.getCommissionAll().subscribe({
-      next: (data) => {
-        let col = ['taxpayer_name','taxpayer_id','agent_tin','name','agent_commission','representative_tin','re_name','representative_commission','assessment_year','year_no']
-        this.positiveResponse(data,col)
-      },
-      error: (e) => {
-        this.loaded = false
-      }
-    })
+ 
   }
 
   getAgentCommission(agent: any){
-    this.commissionServ.getCommissionAgent(agent).subscribe({
-      next: (data) => {
-        let col = ['taxpayerId','taxpayerName', 'created_at','paidAmount','assessmentYear','agentTin','agentCommission']
-        this.positiveResponse(data,col)
-      },
-      error: (e) => {
-        this.loaded = false
-      }
-    })
+   
   }
 
   getTRPCommission(trp: any){
-    this.commissionServ.getCommissionRepresentative(trp).subscribe({
-      next: (data) => {
-        let col = ['taxpayerId','taxpayerName', 'created_at','paidAmount','assessmentYear','representativeTin','representativeCommission']
-        this.positiveResponse(data,col)
-      },
-      error: (e) => {
-        this.loaded = false
-      }
-    })
+    
   }
 
   
   getRangeCommission(startDate: any, endDate: any){
-    this.commissionServ.getAllRangeCommission(startDate,endDate).subscribe({
-      next: (data) => {
-        let col = ['taxpayerId','taxpayerName','paidAmount','created_at','assessmentYear','agentTin','agentCommission','representativeTin','representativeCommission']
-        this.positiveResponse(data, col)
-      },
-      error: (e) => {
-        this.loaded = false;
-      }  
-    })
+   
+    
   }
 
   getAllRepresentativesWithDate(startDate: any, endDate: any){

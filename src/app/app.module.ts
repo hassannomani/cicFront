@@ -61,6 +61,8 @@ import { AddCaseDetailsComponent } from './case_details/add-case-details/add-cas
 import { ViewCaseDetailsComponent } from './case_details/view-case-details/view-case-details.component';
 import { AddFileTrackComponent } from './file_track/add-file-track/add-file-track.component';
 import { ViewFileTrackComponent } from './file_track/view-file-track/view-file-track.component';
+import { ListHouseComponent } from './houseAndlcstation/list-house/list-house.component';
+import { ListStationComponent } from './houseAndlcstation/list-station/list-station.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +121,8 @@ import { ViewFileTrackComponent } from './file_track/view-file-track/view-file-t
     ViewCaseDetailsComponent,
     AddFileTrackComponent,
     ViewFileTrackComponent,
+    ListHouseComponent,
+    ListStationComponent,
   ],
   imports: [
     BrowserModule,
