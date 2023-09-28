@@ -14,6 +14,7 @@ export class CommonService {
   ) { }
 
   private common_base_house : string = 'http://localhost:8080/api/house/'
+  private common_base_lcstation : string = 'http://localhost:8080/api/lcstation/'
   private urlfile : string ='http://localhost:8080/api/common/file';
   private urlPhoto : string ='http://localhost:8080/api/common/photo';
   private urlfileget : string ='http://localhost:8080/api/common/file/';
@@ -153,6 +154,43 @@ export class CommonService {
       headers: this.httpReturner()
     }
     return this.http.get<any>(this.common_base_house+"gethouses",httpOptions)
+  }
+
+  
+  deleteHouse(id: string): Observable<any>{
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.get<any>(this.common_base_house+"deletehouse/"+id,httpOptions)
+  }
+
+
+  
+  addlcstation(formData: any): Observable<any>{
+    const body=JSON.stringify(formData);
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.post<any>(this.common_base_lcstation+"addlcstation",body,httpOptions)
+  }
+
+  getlcstations(): Observable<any>{
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.get<any>(this.common_base_lcstation+"getlcstations",httpOptions)
+  }
+
+  
+  deletelcstation(id: string): Observable<any>{
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.get<any>(this.common_base_lcstation+"deletelcstation/"+id,httpOptions)
   }
 
 }

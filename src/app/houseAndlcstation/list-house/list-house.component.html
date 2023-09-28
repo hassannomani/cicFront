@@ -10,11 +10,11 @@
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>Name</mat-label>
-                        <input matInput formControlName="taxpayername" placeholder="TaxPayer Name">
+                        <input matInput formControlName="name" placeholder="Customs House Name">
                     </mat-form-field>
                 </td>
                 
-                <td>
+                <td style="margin-left: 20px;">
                     <app-button
                     [label]="buttonLabel"
                     [color]="buttonColor" 
@@ -25,3 +25,40 @@
             </tr>
         </table>
     </form>
+
+    <table mat-table [dataSource]="houses" class="mat-elevation-z8">
+  
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Serial</th>
+          <td mat-cell *matCellDef=" let i=index;"> {{(i+1)}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+    
+    
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action</th>
+            <td mat-cell *matCellDef="let element;"> 
+            <app-button
+                [label]="buttonLabel2"
+                [color]="buttonColor" 
+                [type]="buttonType"
+                (click)="delete(element.id)">
+            </app-button>
+        </td>
+    
+            
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index"></tr>
+      </table>

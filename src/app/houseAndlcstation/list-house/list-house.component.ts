@@ -16,18 +16,18 @@ export class ListHouseComponent implements OnInit{
   addhouse = new FormGroup({
     'name':  new FormControl('',[Validators.required]),
   })
-
+  displayedColumns: any =[]
   message : string = ""
   failed: boolean = false
   buttonLabel: string= "Add"
-  buttonLabel2: string= "Submit"
+  buttonLabel2: string= "Delete"
   buttonColor: string = "primary"
   buttonType: string = "button"
   errorMsg: string = ""
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   houses : any = []
-
+  noData : boolean = false
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
@@ -47,12 +47,14 @@ export class ListHouseComponent implements OnInit{
     this.commonServ.addHouse(this.addhouse.value).subscribe({
       next: (data) => {
         if(data?.name){
-          this.loadhouses
+          this.loadhouses()
+          this.addhouse.reset()
         }
         
       },
       error: (e) => {
-       console.log(e)
+       this.message = "Error adding data"
+       this.openSnackBar()
       }
     })
   }
@@ -60,13 +62,46 @@ export class ListHouseComponent implements OnInit{
   loadhouses(){
     this.commonServ.getHouses().subscribe({
       next: (data) => {
-  
-        console.log(data)
+        if(data.length){
+          this.houses = data
+          this.displayedColumns = [ 'id','name','action']  
+        }else{
+          this.displayedColumns = [ 'id','name','action']  
+          this.noData = true
+        }
+        
       },
       error: (e) => {
-       console.log(e)
+       this.message = "Error fetching data"
+       this.openSnackBar()
       }
      })
+  }
+
+  delete(id: any){
+    this.commonServ.deleteHouse(id).subscribe({
+      next: (data) => {
+        if(data==true){
+          this.loadhouses()
+        }else{
+          this.message = "Failed to delete"
+          this.openSnackBar()
+        }
+      },
+      error: (e) => {
+       this.message = "Error deleting"
+       this.openSnackBar()
+      }
+     })
+  }
+
+  openSnackBar() {
+    this._snackBar.open(this.message, 'x', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 5 * 1000,
+
+    });
   }
 
 }

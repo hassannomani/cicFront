@@ -13,6 +13,9 @@ import { SingleEmployeeComponent } from './employee/single-employee/single-emplo
 import { ApproveUsersComponent } from './user/approve-users/approve-users.component';
 import { ApproveAssignUserComponent } from './user/approve-assign-user/approve-assign-user.component';
 import { AddCaseDetailsComponent } from './case_details/add-case-details/add-case-details.component';
+import { ListHouseComponent } from './houseAndlcstation/list-house/list-house.component';
+import { ListStationComponent } from './houseAndlcstation/list-station/list-station.component';
+import { AddFileTrackComponent } from './file_track/add-file-track/add-file-track.component';
 
 
 const routes: Routes = [
@@ -26,7 +29,10 @@ const routes: Routes = [
   {path: "users", component: ListUserComponent},
   {path: "approve-users", component: ApproveUsersComponent},
   {path: "approve-single", component: ApproveAssignUserComponent},
-  {path: "add-case-details", component: AddCaseDetailsComponent}
+  {path: "add-case-details", component: AddCaseDetailsComponent},
+  {path: "customs-houses", component: ListHouseComponent},
+  {path: "lc-stations", component: ListStationComponent},
+  {path: "add-file-tracks", component: AddFileTrackComponent},
   // {path: "add-agent", component: AddAgentComponent},
   // {path: "add-representative", component: AddRepresentativeComponent},
   // {path: "list-agents", component: ListAgentComponent},
