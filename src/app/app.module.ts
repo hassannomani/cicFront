@@ -63,6 +63,7 @@ import { AddFileTrackComponent } from './file_track/add-file-track/add-file-trac
 import { ViewFileTrackComponent } from './file_track/view-file-track/view-file-track.component';
 import { ListHouseComponent } from './houseAndlcstation/list-house/list-house.component';
 import { ListStationComponent } from './houseAndlcstation/list-station/list-station.component';
+import { ListFileTracksComponent } from './file_track/list-file-tracks/list-file-tracks.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { ListStationComponent } from './houseAndlcstation/list-station/list-stat
     ViewFileTrackComponent,
     ListHouseComponent,
     ListStationComponent,
+    ListFileTracksComponent,
   ],
   imports: [
     BrowserModule,

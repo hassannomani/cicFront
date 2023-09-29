@@ -56,7 +56,7 @@
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>File Initiation Date</mat-label>
+                    <mat-label>File Storage Date</mat-label>
                     <input matInput  formControlName="storagedate"  [matDatepicker]="picker2">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -72,31 +72,33 @@
             </tr>
             <tr>
                 <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>Customs House</mat-label>
+                        <mat-select matNativeControl required formControlName="customshouse">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option *ngFor="let house of allHouses" [value]="house.name">{{house.name}}</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>LC Station</mat-label>
+                        <mat-select matNativeControl required formControlName="lcstation">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option *ngFor="let lc of allLCStations" [value]="lc.name">{{lc.name}}</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr class="example-full-width">
+                <td>
                     <mat-form-field class="example-full-width">
                     <mat-label>Details</mat-label>
                     <input matInput  formControlName="details" type="text"  placeholder="Details">
                     </mat-form-field>
                 </td>
-                <td>
-                    <mat-form-field appearance="fill" matInput class="example-full-width">
-                        <mat-label>Court Issue</mat-label>
-                        <mat-select matNativeControl required formControlName="courtissue">
-                            <mat-option value="">--Select--</mat-option>
-                            <mat-option  [value]="true">True</mat-option>   
-                            <mat-option  [value]="false">False</mat-option>   
-                        </mat-select>
-                    </mat-form-field>
-                </td>
             </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                    <mat-label>Comment</mat-label>
-                    <input matInput  formControlName="comment" type="text"  placeholder="IO">
-                    </mat-form-field>
-                </td>
-            </tr>
-            <tr class="example-full-width">
+            <tr class="example-full-width" style="clear: both;">
                 <td>
                     <app-button
                         [label]="buttonLabel2"

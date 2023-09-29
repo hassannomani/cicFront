@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { CommonService } from 'src/app/services/common-service/common.service';
+import { FileTrackService } from 'src/app/services/file-track-service/file-track.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Route } from '@angular/router';
 import {Title} from "@angular/platform-browser";
@@ -27,7 +28,8 @@ export class AddFileTrackComponent implements OnInit{
     'rackno':  new FormControl('',[Validators.required]),
     'storagedate':  new FormControl('',[Validators.required]),
     'jurisdiction':  new FormControl('',[Validators.required]),
-    'details':  new FormControl('',[Validators.required])
+    'details':  new FormControl('',[Validators.required]),
+    'status':  new FormControl('',[Validators.required])
   })
 
   message : string = ""
@@ -40,6 +42,8 @@ export class AddFileTrackComponent implements OnInit{
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   dirty: boolean = false
+  allHouses: any =[]
+  allLCStations: any = []
 
   constructor(
     private router: Router,
@@ -47,7 +51,8 @@ export class AddFileTrackComponent implements OnInit{
     private titleService:Title,
     private _snackBar: MatSnackBar,
     private actroute: ActivatedRoute,
-    private commonServ: CommonService
+    private commonServ: CommonService,
+    private fileTrackServ: FileTrackService,
   ){
     this.titleService.setTitle("Add to File Track");
   }
@@ -55,18 +60,14 @@ export class AddFileTrackComponent implements OnInit{
   ngOnInit(): void {
     
     forkJoin([
-      this.commonService.getDistrict(),
-      this.commonService.getDivision(),
+      this.commonServ.getHouses(),
+      this.commonServ.getlcstations(),
     ])
     .subscribe({
       next: (data) => {
         //console.log(data)
-        this.district = data[0];
-        this.division = data[1];
-        this.thana = data[2];
-        this.banks = data[3];
-        this.bankdist = data[4];
-        this.citycorporation = data[5]
+        this.allHouses = data[0];
+        this.allLCStations = data[1];
       },
       error: (e) => {
        
@@ -77,7 +78,34 @@ export class AddFileTrackComponent implements OnInit{
   }
 
   saveFileTrackDetails(){
-    
+    this.addFileTrackDetails.value['status']='1'
+    this.fileTrackServ.addFileTrack(this.addFileTrackDetails.value).subscribe({
+      next: (data) => {
+        //console.log(data)
+        if(data?.taxfileuuid){
+          this.message = "File Added successfully"
+          this.addFileTrackDetails.reset()
+          this.openSnackBar()
+        }
+        else{
+          this.message= "Failed to save file"
+          this.openSnackBar()
+        }
+      },
+      error: (e) => {
+       this.message = "Error ocurred!"
+       this.openSnackBar()
+      }
+    })
+  }
+
+  openSnackBar() {
+    this._snackBar.open(this.message, 'x', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 5 * 1000,
+
+    });
   }
 
 }

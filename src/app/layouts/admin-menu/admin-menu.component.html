@@ -11,7 +11,17 @@
     </mat-nav-list>
 </mat-expansion-panel>
 <a mat-list-item routerLink="/add-case-details">Add Case Details</a>
-<a mat-list-item routerLink="/add-file-tracks">Add File Tracks</a>
+<mat-expansion-panel>
+
+    <mat-expansion-panel-header>
+    File Track
+    </mat-expansion-panel-header>
+    <mat-nav-list>
+        <a mat-list-item routerLink="/list-file-tracks">List File Tracks</a>
+        <a mat-list-item routerLink="/add-file-tracks">Add File Tracks</a>
+    </mat-nav-list>
+</mat-expansion-panel>
+
 <a mat-list-item routerLink="/customs-houses">Customs House</a>
 <a mat-list-item routerLink="/lc-stations">LC Station</a>
 

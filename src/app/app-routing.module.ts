@@ -16,6 +16,8 @@ import { AddCaseDetailsComponent } from './case_details/add-case-details/add-cas
 import { ListHouseComponent } from './houseAndlcstation/list-house/list-house.component';
 import { ListStationComponent } from './houseAndlcstation/list-station/list-station.component';
 import { AddFileTrackComponent } from './file_track/add-file-track/add-file-track.component';
+import { ListFileTracksComponent } from './file_track/list-file-tracks/list-file-tracks.component';
+import { ViewFileTrackComponent } from './file_track/view-file-track/view-file-track.component';
 
 
 const routes: Routes = [
@@ -33,6 +35,8 @@ const routes: Routes = [
   {path: "customs-houses", component: ListHouseComponent},
   {path: "lc-stations", component: ListStationComponent},
   {path: "add-file-tracks", component: AddFileTrackComponent},
+  {path: "list-file-tracks", component: ListFileTracksComponent},
+  {path: "view-file-track", component: ViewFileTrackComponent},
   // {path: "add-agent", component: AddAgentComponent},
   // {path: "add-representative", component: AddRepresentativeComponent},
   // {path: "list-agents", component: ListAgentComponent},
