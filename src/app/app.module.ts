@@ -64,6 +64,9 @@ import { ViewFileTrackComponent } from './file_track/view-file-track/view-file-t
 import { ListHouseComponent } from './houseAndlcstation/list-house/list-house.component';
 import { ListStationComponent } from './houseAndlcstation/list-station/list-station.component';
 import { ListFileTracksComponent } from './file_track/list-file-tracks/list-file-tracks.component';
+import { ListCaseDetailsComponent } from './case_details/list-case-details/list-case-details.component';
+import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.component';
+import { ListInventoryComponent } from './inventory/list-inventory/list-inventory.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +128,9 @@ import { ListFileTracksComponent } from './file_track/list-file-tracks/list-file
     ListHouseComponent,
     ListStationComponent,
     ListFileTracksComponent,
+    ListCaseDetailsComponent,
+    AddInventoryComponent,
+    ListInventoryComponent,
   ],
   imports: [
     BrowserModule,

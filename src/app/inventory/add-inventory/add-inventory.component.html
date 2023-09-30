@@ -1,0 +1,56 @@
+<div class="headerdiv">
+    <h2>Add Inventory</h2>
+</div>
+
+<div class="container">
+    <form class="example-form" [formGroup]="addInventory">
+        
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" placeholder="Name">
+                    </mat-form-field>
+                </td>
+                
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput formControlName="quantity" placeholder="Quantity">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr class="example-full-width" style="margin-bottom: 30px;">
+                <td style="width: 50%;">
+                    <div class="example-full-width">
+                    <label>Registration Certificate</label>
+                    <br>
+                    <input (change)="selectFile($event)" #fileInput type="file" id="file">
+
+                    <app-button
+                        [label]="buttonLabel"
+                        [color]="buttonColor" 
+                        [type]="buttonType"
+                        (click)="uploadPhoto()"
+                        >
+                    </app-button>
+                    <p class="success" *ngIf="photoUploaded">File Uploaded Successfully</p>
+                </div>
+                </td>
+
+            </tr>
+
+            <tr class="example-full-width" style="clear: both;">
+                <td>
+                    <app-button
+                        [label]="buttonLabel2"
+                        [color]="buttonColor" 
+                        [type]="buttonType"
+                        (click)="saveInventory()">
+                    </app-button>
+                </td>
+            </tr>    
+        </table>
+    </form>
+</div>

@@ -15,23 +15,12 @@ export class CommonService {
 
   private common_base_house : string = 'http://localhost:8080/api/house/'
   private common_base_lcstation : string = 'http://localhost:8080/api/lcstation/'
+  private common_base_inventory : string = 'http://localhost:8080/api/inventory/'
   private urlfile : string ='http://localhost:8080/api/common/file';
   private urlPhoto : string ='http://localhost:8080/api/common/photo';
   private urlfileget : string ='http://localhost:8080/api/common/file/';
   private urlPhotoget : string ='http://localhost:8080/api/common/photo/';
   private urletin : string ='http://localhost:8080/api/etin/tin/';
-
-
-  // getDistrict(): Observable<any[]>{
-   
-
-  // }
-
-  
-  // getDivision(): Observable<any[]>{
-    
-  // }
-
 
 
   httpReturner(): any{
@@ -191,6 +180,15 @@ export class CommonService {
       headers: this.httpReturner()
     }
     return this.http.get<any>(this.common_base_lcstation+"deletelcstation/"+id,httpOptions)
+  }
+
+  addInventory(formData: any){
+    const body=JSON.stringify(formData);
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.post<any>(this.common_base_inventory+"add",body,httpOptions)
   }
 
 }
