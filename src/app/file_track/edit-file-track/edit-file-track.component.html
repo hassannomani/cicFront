@@ -1,0 +1,114 @@
+<div class="headerdiv">
+    <h2>Edit File Track</h2>
+</div>
+
+<div class="container">
+    <form class="example-form" [formGroup]="editFileTrackDetails" (ngSubmit)="saveFileTrackDetails()">
+        
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="taxpayername" placeholder="TaxPayer Name">
+                    </mat-form-field>
+                </td>
+                
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>File No</mat-label>
+                        <input matInput formControlName="fileno" placeholder="File No">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>TIN</mat-label>
+                        <input matInput formControlName="tin" placeholder="TIN">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>BIN</mat-label>
+                        <input matInput formControlName="bin" placeholder="BIN">
+                    </mat-form-field>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>NID</mat-label>
+                        <input matInput formControlName="nid" placeholder="NID">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Rack No</mat-label>
+                        <input matInput formControlName="rackno" placeholder="Rack No">
+                    </mat-form-field>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>File Storage Date</mat-label>
+                    <input matInput  formControlName="storagedate"  [matDatepicker]="picker2">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Jurisdiction</mat-label>
+                        <input matInput formControlName="jurisdiction"  placeholder="Jurisdiction">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>Customs House</mat-label>
+                        <mat-select matNativeControl required formControlName="customshouse">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option *ngFor="let house of allHouses" [value]="house.name">{{house.name}}</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>LC Station</mat-label>
+                        <mat-select matNativeControl required formControlName="lcstation">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option *ngFor="let lc of allLCStations" [value]="lc.name">{{lc.name}}</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr class="example-full-width">
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Details</mat-label>
+                    <input matInput  formControlName="details" type="text"  placeholder="Details">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr class="example-full-width" style="clear: both;">
+                <td>
+                    <app-button
+                        [label]="buttonLabel2"
+                        [color]="buttonColor" 
+                        [type]="buttonType"
+                        (click)="saveFileTrackDetails()">
+                    </app-button>
+                </td>
+            </tr>      
+          
+        </table>    
+    </form>
+</div>

@@ -67,6 +67,7 @@ import { ListFileTracksComponent } from './file_track/list-file-tracks/list-file
 import { ListCaseDetailsComponent } from './case_details/list-case-details/list-case-details.component';
 import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.component';
 import { ListInventoryComponent } from './inventory/list-inventory/list-inventory.component';
+import { EditFileTrackComponent } from './file_track/edit-file-track/edit-file-track.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +132,7 @@ import { ListInventoryComponent } from './inventory/list-inventory/list-inventor
     ListCaseDetailsComponent,
     AddInventoryComponent,
     ListInventoryComponent,
+    EditFileTrackComponent,
   ],
   imports: [
     BrowserModule,

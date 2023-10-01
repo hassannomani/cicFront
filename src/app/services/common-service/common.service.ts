@@ -191,4 +191,20 @@ export class CommonService {
     return this.http.post<any>(this.common_base_inventory+"add",body,httpOptions)
   }
 
+  getAllInventory(): Observable<any>{
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.get<any>(this.common_base_inventory+"list",httpOptions)
+  }
+
+  deleteInventory(id: string): Observable<any>{
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.get<any>(this.common_base_inventory+"remove/"+id,httpOptions)
+  }
+
 }

@@ -32,7 +32,14 @@
             [color]="buttonColor2" 
             [type]="buttonType"
             (click)="delete(element.taxfileuuid)">
-        </app-button>
+            </app-button>
+
+            <app-button style="margin-left: 10px;"
+            [label]="buttonLabel4"
+            [color]="buttonColor" 
+            [type]="buttonType"
+            (click)="edit(element.taxfileuuid)">
+            </app-button>
         </td>
       </ng-container>
 

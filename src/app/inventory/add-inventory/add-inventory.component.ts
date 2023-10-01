@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { CommonService } from 'src/app/services/common-service/common.service';
@@ -20,7 +20,8 @@ export class AddInventoryComponent {
   addInventory = new FormGroup({
     'name':  new FormControl('',[Validators.required]),
     'quantity':  new FormControl('',[Validators.required]),
-    'picture':  new FormControl('',[Validators.required])
+    'picture':  new FormControl('',[Validators.required]),
+    'file': new FormControl(File,[Validators.required])
   })
 
   message : string = ""
@@ -33,7 +34,10 @@ export class AddInventoryComponent {
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   photoUploaded: boolean = false
+
   photo!: File;
+  @ViewChild('fileInput', { static: true }) fileInput?: ElementRef;
+
 
   constructor(
     private router: Router,
@@ -48,16 +52,20 @@ export class AddInventoryComponent {
   }
 
   saveInventory(){
-    this.commonServ.addHouse(this.addInventory.value).subscribe({
+    this.commonServ.addInventory(this.addInventory.value).subscribe({
       next: (data) => {
-        console.log(data.fileUri)
-        if(data.fileUri){
-          this.addInventory.get('picture')?.setValue(data.fileUri);
-          this.photoUploaded = true
+        if(data.inventoriid){
+          this.message = "Successfully added"
+          if(this.fileInput)
+            this.fileInput.nativeElement.value = ""
+          this.addInventory.reset()
+          this.photoUploaded = false
+          this.openSnackBar()
         }
       },
       error: (e) => {
-        console.log(e);
+        this.message = "Error occurred"
+        this.openSnackBar()
       }
     })
   }
@@ -78,6 +86,15 @@ export class AddInventoryComponent {
       error: (e) => {
         console.log(e);
       }
+    });
+  }
+
+  openSnackBar() {
+    this._snackBar.open(this.message, 'x', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 5 * 1000,
+
     });
   }
 }

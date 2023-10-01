@@ -18,6 +18,7 @@ export class ListFileTracksComponent implements OnInit{
   buttonLabel: string= "View"
   buttonLabel2: string= "Add"
   buttonLabel3: string= "Delete"
+  buttonLabel4: string= "Edit"
   buttonColor: string = "primary"
   buttonColor2: string = "warn"
   buttonType: string = "button"
@@ -73,6 +74,12 @@ export class ListFileTracksComponent implements OnInit{
   viewFileTrack(id: any){
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['view-file-track'],{ queryParams: {id: id}});
+    }); 
+  }
+
+  edit(id:any){
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['edit-file-track'],{ queryParams: {id: id}});
     }); 
   }
 

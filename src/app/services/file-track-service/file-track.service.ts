@@ -49,4 +49,15 @@ export class FileTrackService {
     };
     return this.http.get(this.url+'remove/'+string,httpOptions);
   }
+
+  updateFileTrack(formData: any): Observable<any>{
+
+    const body=JSON.stringify(formData);
+    const headerObj = this.commonService.httpReturner()
+    const httpOptions = {
+      headers: headerObj
+    };
+    return this.http.post(this.url+'update', body,httpOptions);
+  }
+
 }
