@@ -17,6 +17,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarModule, MatSnack
 export class EditFileTrackComponent implements OnInit{
 
   editFileTrackDetails = new FormGroup({
+    'taxfileuuid' :  new FormControl('',[Validators.required]),
     'taxpayername':  new FormControl('',[Validators.required]),
     'fileno':  new FormControl('',[Validators.required]),
     'tin':  new FormControl('',[Validators.required]),
@@ -43,6 +44,7 @@ export class EditFileTrackComponent implements OnInit{
   fileTrack : any = {}
   allHouses: any = []
   allLCStations: any =[]
+  id: any= ""
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
@@ -61,6 +63,7 @@ export class EditFileTrackComponent implements OnInit{
     .queryParams
     .subscribe(paramsg=>{
       let id = paramsg['id']
+      this.id = id
       if(id!=""){
         forkJoin([
           this.commonServ.getHouses(),
@@ -99,6 +102,7 @@ export class EditFileTrackComponent implements OnInit{
   }
 
   fillupData(){
+    this.editFileTrackDetails.get('taxfileuuid')?.setValue(this.fileTrack.taxfileuuid)
     this.editFileTrackDetails.get('taxpayername')?.setValue(this.fileTrack.taxpayername)
     this.editFileTrackDetails.get('fileno')?.setValue(this.fileTrack.fileno)
     this.editFileTrackDetails.get('tin')?.setValue(this.fileTrack.tin)

@@ -28,11 +28,18 @@
             </app-button>
 
             <app-button style="margin-left: 10px;"
-            [label]="buttonLabel3"
-            [color]="buttonColor2" 
-            [type]="buttonType"
-            (click)="delete(element.taxcasedtlsuuid)">
-        </app-button>
+              [label]="buttonLabel3"
+              [color]="buttonColor2" 
+              [type]="buttonType"
+              (click)="delete(element.taxcasedtlsuuid)">
+            </app-button>
+
+            <app-button style="margin-left: 10px;"
+              [label]="buttonLabel4"
+              [color]="buttonColor" 
+              [type]="buttonType"
+              (click)="editCaseDetails(element.taxcasedtlsuuid)">
+          </app-button>
         </td>
       </ng-container>
 

@@ -191,6 +191,15 @@ export class CommonService {
     return this.http.post<any>(this.common_base_inventory+"add",body,httpOptions)
   }
 
+  updateInventory(formData: any){
+    const body=JSON.stringify(formData);
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.post<any>(this.common_base_inventory+"update",body,httpOptions)
+  }
+
   getAllInventory(): Observable<any>{
 
     const httpOptions = {
@@ -205,6 +214,14 @@ export class CommonService {
       headers: this.httpReturner()
     }
     return this.http.get<any>(this.common_base_inventory+"remove/"+id,httpOptions)
+  }
+
+  getInventory(id: string): Observable<any>{
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.get<any>(this.common_base_inventory+"get/"+id,httpOptions)
   }
 
 }

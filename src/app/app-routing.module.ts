@@ -23,6 +23,8 @@ import { ViewCaseDetailsComponent } from './case_details/view-case-details/view-
 import { ListInventoryComponent } from './inventory/list-inventory/list-inventory.component';
 import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.component';
 import { EditFileTrackComponent } from './file_track/edit-file-track/edit-file-track.component';
+import { EditInventoryComponent } from './inventory/edit-inventory/edit-inventory.component';
+import { EditCaseDetailsComponent } from './case_details/edit-case-details/edit-case-details.component';
 
 
 const routes: Routes = [
@@ -39,6 +41,7 @@ const routes: Routes = [
   {path: "add-case-details", component: AddCaseDetailsComponent},
   {path: "list-case-details", component: ListCaseDetailsComponent},
   {path: "view-case-detail", component: ViewCaseDetailsComponent},
+  {path: "edit-case-detail", component: EditCaseDetailsComponent},
   {path: "customs-houses", component: ListHouseComponent},
   {path: "lc-stations", component: ListStationComponent},
   {path: "add-file-tracks", component: AddFileTrackComponent},
@@ -47,6 +50,7 @@ const routes: Routes = [
   {path: "edit-file-track", component: EditFileTrackComponent},
   {path: "list-inventory", component: ListInventoryComponent},
   {path: "add-inventory", component: AddInventoryComponent},
+  {path: "view-inventory", component: EditInventoryComponent},
   // {path: "add-agent", component: AddAgentComponent},
   // {path: "add-representative", component: AddRepresentativeComponent},
   // {path: "list-agents", component: ListAgentComponent},

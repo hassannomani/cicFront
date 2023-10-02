@@ -18,6 +18,7 @@ export class ListCaseDetailsComponent implements OnInit{
   buttonLabel: string= "View"
   buttonLabel2: string= "Add"
   buttonLabel3: string= "Delete"
+  buttonLabel4: string= "Edit"
   buttonColor: string = "primary"
   buttonColor2: string = "warn"
   buttonType: string = "button"
@@ -73,6 +74,12 @@ export class ListCaseDetailsComponent implements OnInit{
   viewCaseDetails(id: any){
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['view-case-detail'],{ queryParams: {id: id}});
+    }); 
+  }
+
+  editCaseDetails(id: any){
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['edit-case-detail'],{ queryParams: {id: id}});
     }); 
   }
 

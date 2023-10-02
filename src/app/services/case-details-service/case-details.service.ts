@@ -27,6 +27,16 @@ export class CaseDetailsService {
     return this.http.post(this.url+'add', body,httpOptions);
   }
 
+  updateCaseDetails(formData: any): Observable<any>{
+
+    const body=JSON.stringify(formData);
+    const headerObj = this.commonService.httpReturner()
+    const httpOptions = {
+      headers: headerObj
+    };
+    return this.http.post(this.url+'update', body,httpOptions);
+  }
+
   listCaseDetails(): Observable<any>{
     const headerObj = this.commonService.httpReturner()
     const httpOptions = {

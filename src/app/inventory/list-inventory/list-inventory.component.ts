@@ -18,7 +18,7 @@ export class ListInventoryComponent implements OnInit{
   message : string = ""
   failed: boolean = false
   buttonLabel: string= "View"
-  buttonLabel2: string= "Add"
+  buttonLabel2: string= "Edit"
   buttonLabel3: string= "Delete"
   buttonColor: string = "primary"
   buttonColor2: string = "warn"
@@ -92,6 +92,12 @@ export class ListInventoryComponent implements OnInit{
         this.openSnackBar()
       }
     })
+  }
+
+  edit(id: any){
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['view-inventory'],{ queryParams: {id: id}});
+    });    
   }
 
   loadPhoto(url: string){

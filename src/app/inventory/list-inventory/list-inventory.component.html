@@ -40,8 +40,14 @@
             [color]="buttonColor2" 
             [type]="buttonType"
             (click)="delete(element.inventoriid)">
-        </app-button>
-        </td>
+            </app-button>
+            <app-button style="margin-left: 10px;"
+            [label]="buttonLabel2"
+            [color]="buttonColor" 
+            [type]="buttonType"
+            (click)="edit(element.inventoriid)">
+            </app-button>
+          </td>
       </ng-container>
 
   

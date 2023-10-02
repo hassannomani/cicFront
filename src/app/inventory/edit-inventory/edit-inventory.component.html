@@ -1,0 +1,59 @@
+<div class="headerdiv">
+    <h2>Add Inventory</h2>
+</div>
+
+<div class="container">
+    <form class="example-form" [formGroup]="addInventory">
+        
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" placeholder="Name">
+                    </mat-form-field>
+                </td>
+                
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput formControlName="quantity" placeholder="Quantity">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr class="example-full-width" style="margin-bottom: 30px;">
+                <td>
+                    <img [attr.src]="image" alt="" class="img-responsive">
+
+                </td>
+            </tr>
+            <tr class="example-full-width" style="clear: both;display: block;float: left;">
+                <td>
+                    <div class="example-full-width">
+                        <label>Inventory Picture</label>
+                        <br>
+                        <input (change)="selectFile($event)" #fileInput type="file" id="file">
+
+                        <app-button
+                            [label]="buttonLabel"
+                            [color]="buttonColor" 
+                            [type]="buttonType"
+                            (click)="uploadPhoto()"
+                            >
+                        </app-button>
+                        <p class="success" *ngIf="photoUploaded">File Uploaded Successfully</p>
+                    </div>
+                </td>
+            </tr>
+
+            <div class="example-full-width" style="clear: both;margin-top: 30px !important;">
+                    <app-button
+                        [label]="buttonLabel2"
+                        [color]="buttonColor" 
+                        [type]="buttonType"
+                        (click)="saveInventory()">
+                    </app-button>
+            </div>    
+        </table>
+    </form>
+</div>
