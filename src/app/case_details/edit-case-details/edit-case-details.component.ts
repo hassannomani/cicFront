@@ -135,15 +135,8 @@ export class EditCaseDetailsComponent implements OnInit{
   }
 
   caseDetailsSave(){
-    console.log(this.addCaseDetails.value)
-    // let string= ""
-    // let tinnos: any
-    // tinnos=this.addCaseDetails.value['tinnos']
-    // for(let i=0;i<tinnos.length;i++)
-    // string+=tinnos[i].tin+","+tinnos[i].name+","
     
-    // this.addCaseDetails.value['tinno'] = string.substring(0,(string.length-1))
-    this.caseDetailsServ.addCaseDetails(this.addCaseDetails.value).subscribe({
+    this.caseDetailsServ.updateCaseDetails(this.addCaseDetails.value).subscribe({
       
       next: (data) => {
         //console.log(data)
@@ -200,7 +193,7 @@ export class EditCaseDetailsComponent implements OnInit{
   }
 
   loadCaseDetails(){
-    this.addCaseDetails.get('taxcasedtlsuuid')?.setValue(this.caseDetails.taxfileuuid)
+    this.addCaseDetails.get('taxcasedtlsuuid')?.setValue(this.caseDetails.taxcasedtlsuuid)
     this.addCaseDetails.get('taxpayername')?.setValue(this.caseDetails.taxpayername)
     if(this.singleTin==true)
       this.addCaseDetails.get('tinmultiple')?.setValue("0")
@@ -210,10 +203,10 @@ export class EditCaseDetailsComponent implements OnInit{
 
     this.addCaseDetails.get('tinno')?.setValue(this.caseDetails.tinno)
 
-    this.addCaseDetails.get('tinno')?.setValue(this.caseDetails.tinno)
+    //this.addCaseDetails.get('tinno')?.setValue(this.caseDetails.tinno)
     this.addCaseDetails.get('bin')?.setValue(this.caseDetails.bin)
     this.addCaseDetails.get('rjsc')?.setValue(this.caseDetails.rjsc)
-    this.addCaseDetails.get('taxcasedtlsuuid')?.setValue(this.caseDetails.taxfileuuid)
+    this.addCaseDetails.get('nidno')?.setValue(this.caseDetails.nidno)
     this.addCaseDetails.get('io')?.setValue(this.caseDetails.io)
     this.addCaseDetails.get('fileinitdate')?.setValue(this.caseDetails.fileinitdate)
     this.addCaseDetails.get('banksearchboolean')?.setValue(this.caseDetails.banksearchboolean)
