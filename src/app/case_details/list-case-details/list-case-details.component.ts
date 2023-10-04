@@ -13,12 +13,20 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarModule, MatSnack
 })
 export class ListCaseDetailsComponent implements OnInit{
 
+  searchbox= new FormGroup({
+    'taxpayername':  new FormControl('',[Validators.required]),
+    'tinno':  new FormControl('',[Validators.required]),
+    'bin':  new FormControl('',[Validators.required])
+  })
+
   message : string = ""
   failed: boolean = false
   buttonLabel: string= "View"
   buttonLabel2: string= "Add"
   buttonLabel3: string= "Delete"
   buttonLabel4: string= "Edit"
+  buttonLabelSr: string= "Search"
+  buttonLabelClr: string= "Clear"
   buttonColor: string = "primary"
   buttonColor2: string = "warn"
   buttonType: string = "button"
@@ -105,5 +113,13 @@ export class ListCaseDetailsComponent implements OnInit{
     })
   }
 
+  
+  search(){
+
+  }
+
+  clear(){
+    this.searchbox.reset()
+  }
 
 }

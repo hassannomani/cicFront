@@ -23,7 +23,7 @@ h3{
 
 td {
   padding-right: 8px;
-  width: 49%;
+  width: 100%;
   display: block;
   float: left;
 }
@@ -35,6 +35,7 @@ td {
 }
 
 tr{
-    width: 100%;
-    display: block;
+  clear: left;
+  width: 70%;
+  margin-left: 15%;
 }

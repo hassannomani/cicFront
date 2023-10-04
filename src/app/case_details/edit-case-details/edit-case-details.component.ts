@@ -200,7 +200,6 @@ export class EditCaseDetailsComponent implements OnInit{
     else
     this.addCaseDetails.get('tinmultiple')?.setValue("1")
     this.dirty=true
-
     this.addCaseDetails.get('tinno')?.setValue(this.caseDetails.tinno)
 
     //this.addCaseDetails.get('tinno')?.setValue(this.caseDetails.tinno)

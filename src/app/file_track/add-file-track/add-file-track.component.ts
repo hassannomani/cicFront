@@ -29,7 +29,8 @@ export class AddFileTrackComponent implements OnInit{
     'storagedate':  new FormControl('',[Validators.required]),
     'jurisdiction':  new FormControl('',[Validators.required]),
     'details':  new FormControl('',[Validators.required]),
-    'status':  new FormControl('',[Validators.required])
+    'status':  new FormControl('',[Validators.required]),
+    'classification': new FormControl('',[Validators.required])
   })
 
   message : string = ""
@@ -44,7 +45,7 @@ export class AddFileTrackComponent implements OnInit{
   dirty: boolean = false
   allHouses: any =[]
   allLCStations: any = []
-
+  allJurisdictions: any = []
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
@@ -62,12 +63,14 @@ export class AddFileTrackComponent implements OnInit{
     forkJoin([
       this.commonServ.getHouses(),
       this.commonServ.getlcstations(),
+      this.commonServ.getJurisdictions()
     ])
     .subscribe({
       next: (data) => {
         //console.log(data)
         this.allHouses = data[0];
         this.allLCStations = data[1];
+        this.allJurisdictions = data[2]
       },
       error: (e) => {
        

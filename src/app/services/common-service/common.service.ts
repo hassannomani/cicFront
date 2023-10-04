@@ -16,6 +16,7 @@ export class CommonService {
   private common_base_house : string = 'http://localhost:8080/api/house/'
   private common_base_lcstation : string = 'http://localhost:8080/api/lcstation/'
   private common_base_inventory : string = 'http://localhost:8080/api/inventory/'
+  private common_base_jurisdiction : string = 'http://localhost:8080/api/jurisdiction/'
   private urlfile : string ='http://localhost:8080/api/common/file';
   private urlPhoto : string ='http://localhost:8080/api/common/photo';
   private urlfileget : string ='http://localhost:8080/api/common/file/';
@@ -223,5 +224,32 @@ export class CommonService {
     }
     return this.http.get<any>(this.common_base_inventory+"get/"+id,httpOptions)
   }
+
+  addJurisdiction(formData: any): Observable<any>{
+    const body=JSON.stringify(formData);
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.post<any>(this.common_base_jurisdiction+"add",body,httpOptions)
+  }
+
+  getJurisdictions(): Observable<any>{
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.get<any>(this.common_base_jurisdiction+"get",httpOptions)
+  }
+
+  
+  deleteJurisdiction(id: string): Observable<any>{
+
+    const httpOptions = {
+      headers: this.httpReturner()
+    }
+    return this.http.get<any>(this.common_base_jurisdiction+"delete/"+id,httpOptions)
+  }
+
 
 }

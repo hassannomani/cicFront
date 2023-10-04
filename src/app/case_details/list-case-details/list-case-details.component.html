@@ -1,6 +1,55 @@
 <div class="headerdiv">
     <h2>Case Details</h2>
   </div>
+  <div class="container">
+    <form class="example-form" [formGroup]="searchbox">
+      <div class="row align-items-start">
+        <div class="col">
+          <mat-form-field class="example-full-width">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="taxpayername">
+        </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="example-full-width">
+            <mat-label>TIN</mat-label>
+            <input matInput formControlName="tinno">
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field class="example-full-width">
+            <mat-label>BIN</mat-label>
+            <input matInput formControlName="bin">
+        </mat-form-field>
+
+        </div>
+        <div class="col">
+          <app-button
+            [label]="buttonLabelSr"
+            [color]="buttonColor" 
+            [type]="buttonType"
+            (click)="search()"
+            >
+          </app-button>
+          <app-button style="margin-left: 10px;"
+            [label]="buttonLabelClr"
+            [color]="buttonColor" 
+            [type]="buttonType"
+            (click)="clear()"
+            >
+          </app-button>
+        </div>
+        
+      </div>
+      
+                 
+              
+      
+    </form>
+  </div>
+  
 
   <table mat-table [dataSource]="caseDetails" class="mat-elevation-z8">
   

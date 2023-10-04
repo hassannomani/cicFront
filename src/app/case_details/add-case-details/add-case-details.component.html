@@ -3,6 +3,7 @@
 </div>
 
 <div class="container">
+
     <form class="example-form" [formGroup]="addCaseDetails" (ngSubmit)="caseDetailsSave()">
         
         <table class="example-full-width" cellspacing="0">
@@ -13,7 +14,16 @@
                         <input matInput formControlName="taxpayername">
                     </mat-form-field>
                 </td>
-                
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>TIN</mat-label>
+                        <input matInput formControlName="tinno">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>NID</mat-label>
@@ -21,6 +31,7 @@
                     </mat-form-field>
                 </td>
             </tr>
+               
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
@@ -28,10 +39,11 @@
                         <input matInput formControlName="bin">
                     </mat-form-field>
                 </td>
-                
+            </tr>                
+            <tr>
                 <td>
                     <mat-form-field class="example-full-width">
-                        <mat-label>RJSC</mat-label>
+                        <mat-label>RJSC Inc Number</mat-label>
                         <input matInput formControlName="rjsc">
                     </mat-form-field>
                 </td>

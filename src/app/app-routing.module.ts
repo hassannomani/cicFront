@@ -25,6 +25,7 @@ import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.c
 import { EditFileTrackComponent } from './file_track/edit-file-track/edit-file-track.component';
 import { EditInventoryComponent } from './inventory/edit-inventory/edit-inventory.component';
 import { EditCaseDetailsComponent } from './case_details/edit-case-details/edit-case-details.component';
+import { ListJurisdictionComponent } from './jurisdiction/list-jurisdiction/list-jurisdiction.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,7 @@ const routes: Routes = [
   {path: "list-inventory", component: ListInventoryComponent},
   {path: "add-inventory", component: AddInventoryComponent},
   {path: "view-inventory", component: EditInventoryComponent},
+  {path: "jurisdiction", component: ListJurisdictionComponent},
   // {path: "add-agent", component: AddAgentComponent},
   // {path: "add-representative", component: AddRepresentativeComponent},
   // {path: "list-agents", component: ListAgentComponent},

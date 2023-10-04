@@ -10,7 +10,7 @@ h3{
 }
 
 .example-full-width {
-  width: 100%;
+  width: 80%;
 }
 .example-semi-full-width{
   width:82%;
@@ -20,10 +20,15 @@ h3{
   padding: 5%;
     float: right;
 }
+tr{
+  clear: left;
+  width: 70%;
+  margin-left: 15%;
+}
 
 td {
   padding-right: 8px;
-  width: 49%;
+  width: 100%;
   display: block;
   float: left;
 }

@@ -29,7 +29,8 @@ export class EditFileTrackComponent implements OnInit{
     'storagedate':  new FormControl('',[Validators.required]),
     'jurisdiction':  new FormControl('',[Validators.required]),
     'details':  new FormControl('',[Validators.required]),
-    'status':  new FormControl('',[Validators.required])
+    'status':  new FormControl('',[Validators.required]),
+    'classification':  new FormControl('',[Validators.required])
   })
 
   message : string = ""
@@ -44,6 +45,7 @@ export class EditFileTrackComponent implements OnInit{
   fileTrack : any = {}
   allHouses: any = []
   allLCStations: any =[]
+  allJurisdictions: any =[]
   id: any= ""
   constructor(
     private router: Router,
@@ -68,7 +70,8 @@ export class EditFileTrackComponent implements OnInit{
         forkJoin([
           this.commonServ.getHouses(),
           this.commonServ.getlcstations(),
-          this.fileTrackServ.getAFileTrack(id)
+          this.fileTrackServ.getAFileTrack(id),
+          this.commonServ.getJurisdictions()
         ])
         .subscribe({
           next: (data) => {
@@ -76,6 +79,7 @@ export class EditFileTrackComponent implements OnInit{
             this.allHouses = data[0];
             this.allLCStations = data[1];
             this.fileTrack = data[2]
+            this.allJurisdictions = data[3]
             this.fillupData()
           },
           error: (e) => {
@@ -114,6 +118,9 @@ export class EditFileTrackComponent implements OnInit{
     this.editFileTrackDetails.get('storagedate')?.setValue(this.fileTrack.storagedate)
     this.editFileTrackDetails.get('jurisdiction')?.setValue(this.fileTrack.jurisdiction)
     this.editFileTrackDetails.get('details')?.setValue(this.fileTrack.details)
+    this.editFileTrackDetails.get('classification')?.setValue(this.fileTrack.classification)
+    this.editFileTrackDetails.get('jurisdiction')?.setValue(this.fileTrack.jurisdiction)
+    
   }
 
   saveFileTrackDetails(){

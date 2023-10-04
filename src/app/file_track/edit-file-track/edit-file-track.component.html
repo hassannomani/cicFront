@@ -13,7 +13,33 @@
                         <input matInput formControlName="taxpayername" placeholder="TaxPayer Name">
                     </mat-form-field>
                 </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>TIN</mat-label>
+                        <input matInput formControlName="tin" placeholder="TIN">
+                    </mat-form-field>
+                </td>
+            </tr>
                 
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>NID</mat-label>
+                        <input matInput formControlName="nid" placeholder="NID">
+                    </mat-form-field>
+                </td> 
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>BIN</mat-label>
+                        <input matInput formControlName="bin" placeholder="BIN">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>File No</mat-label>
@@ -21,38 +47,15 @@
                     </mat-form-field>
                 </td>
             </tr>
+
             <tr>
-                
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>TIN</mat-label>
-                        <input matInput formControlName="tin" placeholder="TIN">
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>BIN</mat-label>
-                        <input matInput formControlName="bin" placeholder="BIN">
-                    </mat-form-field>
-                </td>
-                
-            </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>NID</mat-label>
-                        <input matInput formControlName="nid" placeholder="NID">
-                    </mat-form-field>
-                </td>
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>Rack No</mat-label>
                         <input matInput formControlName="rackno" placeholder="Rack No">
                     </mat-form-field>
                 </td>
-
             </tr>
-
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
@@ -63,13 +66,19 @@
                     <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>
                 </td>
+            </tr>
+            <tr>
                 <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Jurisdiction</mat-label>
-                        <input matInput formControlName="jurisdiction"  placeholder="Jurisdiction">
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>All Jurisdictions</mat-label>
+                        <mat-select matNativeControl required formControlName="jurisdiction">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option *ngFor="let lc of allJurisdictions" [value]="lc.name">{{lc.name}}</mat-option>   
+                        </mat-select>
                     </mat-form-field>
                 </td>
             </tr>
+
             <tr>
                 <td>
                     <mat-form-field appearance="fill" matInput class="example-full-width">
@@ -80,6 +89,9 @@
                         </mat-select>
                     </mat-form-field>
                 </td>
+            </tr>
+            <tr>
+                
                 <td>
                     <mat-form-field appearance="fill" matInput class="example-full-width">
                         <mat-label>LC Station</mat-label>
@@ -90,7 +102,19 @@
                     </mat-form-field>
                 </td>
             </tr>
-            <tr class="example-full-width">
+            <tr>
+                <mat-form-field appearance="fill" matInput class="example-full-width">
+                    <mat-label>Classification</mat-label>
+                    <mat-select matNativeControl required formControlName="classification">
+                        <mat-option value="">--Select--</mat-option>
+                        <mat-option value="A">A</mat-option>   
+                        <mat-option value="B">B</mat-option>   
+                        <mat-option value="C">C</mat-option>   
+                        <mat-option value="D">D</mat-option>   
+                    </mat-select>
+                </mat-form-field>
+            </tr>
+            <tr>
                 <td>
                     <mat-form-field class="example-full-width">
                     <mat-label>Details</mat-label>
