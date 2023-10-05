@@ -22,15 +22,32 @@
         </ul>
         
     </div>
+
+    <p *ngIf="singleIo">IO: {{caseDetails.io}}</p>
+    <div *ngIf="!singleIo">
+        <p>List of IOs</p>
+        <ul>
+            <li *ngFor="let io of ios">
+                <span>{{io.name}}</span>: 
+                <span style="margin-left: 10px;">{{io.date | date}}</span>
+    
+            </li>
+        </ul>
+        
+    </div>
     <p>BIN: {{caseDetails.bin}}</p>
     <p>NID: {{caseDetails.nidno}}</p>
     <p>RJSC: {{caseDetails.rjsc}}</p>
-    <p>IO: {{caseDetails.io}}</p>
-    <p>File Initiation Date: {{caseDetails.fileinitdate | date:('short')}}</p>
-    <p>Report Sending Date: {{caseDetails.dateofreportsend | date:('short')}}</p>
-    <p>Date of receiving completion : {{caseDetails.dateofcompletion | date:('short')}}</p>
-    <p>Report Sending back date: {{caseDetails.dateofsendback | date:('short')}}</p>
-    <p>File Enlisted date: {{caseDetails.fileenlisted | date:('short')}}</p>
+    <p>File Initiation Date: {{caseDetails.fileinitdate | date}}</p>
+    <p>Report Sending Date: {{caseDetails.dateofreportsend | date}}</p>
+    <p>Date of Receiving File from field office : {{caseDetails.dateofcompletion | date}}</p>
+    <p>File Type : {{caseDetails.filetype}}</p>
+    <p>Report Sending back date: {{caseDetails.dateofsendback | date}}</p>
+    <p>Bank Search date: {{caseDetails.banksearchdate | date}}</p>
+    <p>Bank Freezing date: {{caseDetails.bankfreezedata | date}}</p>
+    <p>Bank Unfreezing date: {{caseDetails.bankunfreezedate | date}}</p>
+    <p>Amount Received by CIC: {{caseDetails.cicamount }}BDT</p>
+    <p>Amount Received by Field OFfice: {{caseDetails.fieldamount }}BDT</p>
     <p>Court Issue: {{caseDetails.courtissue}}</p>
     <p>Comment: {{caseDetails.comment}}</p>
 </div>

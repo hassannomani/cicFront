@@ -26,7 +26,9 @@ export class ViewCaseDetailsComponent {
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   caseDetails : any = {}
   tins: any =[]
+  ios: any =[]
   singleTin: Boolean = true
+  singleIo: Boolean = true
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
@@ -54,12 +56,29 @@ export class ViewCaseDetailsComponent {
               if(tins.length==1){
                 this.singleTin = true
               }else{
-                for(let i=0;i<tins.length;i=i+2){
+                for(let i=1;i<tins.length;i=i+2){
                   let obj = {name: tins[i], tinno: tins[i+1]}
                   this.tins.push(obj)
                 } 
                 this.singleTin = false            
               }
+
+              let iotemp = data.io
+              let ios = tintemp.split(",")
+
+              if(ios.length==1){
+                this.singleIo = true
+              }else{
+                for(let i=1;i<ios.length;i=i+2){
+                  let obj = {name: ios[i+1], date: ios[i]}
+                  this.ios.push(obj)
+                } 
+                console.log(this.ios)
+                this.singleIo = false            
+              }
+
+
+
             }
             else{ 
               this.message = "Information not found!"

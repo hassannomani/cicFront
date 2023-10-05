@@ -10,20 +10,15 @@ h3{
 }
 
 .example-full-width {
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
+
 }
-.example-semi-full-width{
-  width:82%;
-}
-.example-small-width{
-  width: 18%;
-  padding: 5%;
-    float: right;
-}
+
 
 td {
   padding-right: 8px;
-  width: 49%;
+  width: 100%;
   display: block;
   float: left;
 }
@@ -35,6 +30,34 @@ td {
 }
 
 tr{
-    width: 100%;
-    display: block;
+  clear: left;
+  width: 70%;
+  margin-left: 15%;
+}
+.tinform{
+ 
+  width: 100%;
+  display: block;
+  overflow: hidden;
+ 
+}
+
+.tinform>tr{
+  clear: both;
+  width: 100%;
+  display: block;
+  margin-left: 0%;
+}
+
+/* .tinform > .example-semi-full-width{
+  width: 74%;
+  margin-left: 10%;
+  display: inline-block;
+} */
+.tinform > .example-small-width{
+  width:5%;
+  display: block;
+  margin-left: 0%;
+  padding: 5%;
+  float: right;
 }

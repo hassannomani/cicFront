@@ -10,6 +10,10 @@ export interface tin {
   tin : string,
   name: string
 }
+export interface tin {
+  name : string,
+  date: string
+}
 
 @Component({
   selector: 'app-add-case-details',
@@ -27,10 +31,11 @@ export class AddCaseDetailsComponent implements OnInit{
     'bin':  new FormControl('',[Validators.required]),
     'rjsc':  new FormControl('',[Validators.required]),
     'io':  new FormControl('',[Validators.required]),
+    'ios': this.fb.array([]),
     'fileinitdate':  new FormControl('',[Validators.required]),
     'banksearchboolean':  new FormControl('',[Validators.required]),
     'banksearchdate':  new FormControl('',[Validators.required]),
-    'bankfreezedata':  new FormControl('',[Validators.required]),
+    'bankfreezedate':  new FormControl('',[Validators.required]),
     'dateofreportsend':  new FormControl('',[Validators.required]),
     'dateofcompletion':  new FormControl('',[Validators.required]),
     'dateofsendback':  new FormControl('',[Validators.required]),
@@ -38,12 +43,22 @@ export class AddCaseDetailsComponent implements OnInit{
     'courtissue':  new FormControl('',[Validators.required]),
     'comment':  new FormControl('',[Validators.required]),
     'status':  new FormControl('',[Validators.required]),
+    'cicamount':  new FormControl('',[Validators.required]),
+    'fieldamount':  new FormControl('',[Validators.required]),
+    'filetype':  new FormControl('',[Validators.required]),
+    'bankunfreezedate':  new FormControl('',[Validators.required]),
     'createdby': new FormControl('',[Validators.required])
   })
 
   tinForm = new FormGroup({
     'tin': new FormControl('',[Validators.required]),
     'name': new FormControl('',[Validators.required])
+   })
+
+   
+  ioForm = new FormGroup({
+    'name': new FormControl('',[Validators.required]),
+    'date': new FormControl('',[Validators.required]),
    })
   
   message : string = ""
@@ -61,6 +76,10 @@ export class AddCaseDetailsComponent implements OnInit{
   defaultTin = {
     tin : "",
     name: ""
+  }
+  defaultIo = {
+    name: "",
+    date: ""
   }
   localStore : any ={}
   createdBy: string = ""
@@ -82,16 +101,26 @@ export class AddCaseDetailsComponent implements OnInit{
   }
 
   caseDetailsSave(){
-    console.log(this.addCaseDetails.value)
+
     let string= ""
     let tinnos: any
     tinnos=this.addCaseDetails.value['tinnos']
     for(let i=0;i<tinnos.length;i++)
     string+=tinnos[i].tin+","+tinnos[i].name+","
-    
-    this.addCaseDetails.value['tinno'] = string.substring(0,(string.length-1))
+    if(string.length)
+    this.addCaseDetails.value['tinno'] = this.addCaseDetails.value['tinno']+","+ string.substring(0,(string.length-1))
     this.addCaseDetails.value['status']='1'
     this.addCaseDetails.value['createdby']=this.createdBy
+    
+    let io: any
+    let string2=""
+    io= this.addCaseDetails.value['ios']
+    for(let i=0;i<io.length;i++)
+    string2+=io[i].name+","+io[i].date+","
+    if(io.length)
+    this.addCaseDetails.value['io'] = this.addCaseDetails.value['io']+","+ string2.substring(0,(string2.length-1))
+
+
     this.caseDetailsServ.addCaseDetails(this.addCaseDetails.value).subscribe({
       
       next: (data) => {
@@ -114,20 +143,31 @@ export class AddCaseDetailsComponent implements OnInit{
     })
   }
 
-  tinselection(value:any){
-    console.log(value)
-    this.dirty = true
-    this.multitin = value=="1"||value==1?true:false
-  }
+  // tinselection(value:any){
+  //   console.log(value)
+  //   this.dirty = true
+  //   this.multitin = value=="1"||value==1?true:false
+  // }
 
   get tinnos(){
     // return <FormArray>this.addEmployee.get('courses');
      return this.addCaseDetails.controls["tinnos"] as FormArray;
    }
 
+   get ios(){
+    // return <FormArray>this.addEmployee.get('courses');
+     return this.addCaseDetails.controls["ios"] as FormArray;
+   }
+
    addAnother(){
     let formGroup = this.createTins(this.defaultTin);
     this.tinnos.push(formGroup);
+   
+  }
+
+  addAnotherio(){
+    let formGroup = this.createIos(this.defaultIo);
+    this.ios.push(formGroup);
    
   }
 
@@ -139,8 +179,20 @@ export class AddCaseDetailsComponent implements OnInit{
     });
   }
 
+  createIos(io: any) {
+
+    return this.fb.group({
+        'name' : [io.name,[Validators.required]],
+        'date' : [io.date,[Validators.required]]
+    });
+  }
+
   deleteTin(lessonIndex: number) {
     this.tinnos.removeAt(lessonIndex);
+  }
+
+  deleteIo(lessonIndex: number) {
+    this.ios.removeAt(lessonIndex);
   }
 
   bankSearch(value:any){
