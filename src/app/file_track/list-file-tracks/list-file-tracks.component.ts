@@ -13,6 +13,12 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarModule, MatSnack
 })
 export class ListFileTracksComponent implements OnInit{
 
+  searchbox= new FormGroup({
+    'taxpayername':  new FormControl('',[Validators.required]),
+    'tinno':  new FormControl('',[Validators.required]),
+    'bin':  new FormControl('',[Validators.required])
+  })
+
   message : string = ""
   failed: boolean = false
   buttonLabel: string= "View"
@@ -21,6 +27,8 @@ export class ListFileTracksComponent implements OnInit{
   buttonLabel4: string= "Edit"
   buttonColor: string = "primary"
   buttonColor2: string = "warn"
+  buttonLabelSr: string= "Search"
+  buttonLabelClr: string= "Clear"
   buttonType: string = "button"
   errorMsg: string = ""
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
@@ -103,6 +111,14 @@ export class ListFileTracksComponent implements OnInit{
         this.openSnackBar()      
       } 
     })
+  }
+
+  search(){
+
+  }
+
+  clear(){
+    this.searchbox.reset()
   }
 
 }
