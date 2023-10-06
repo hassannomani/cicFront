@@ -29,6 +29,8 @@ export class ViewCaseDetailsComponent {
   ios: any =[]
   singleTin: Boolean = true
   singleIo: Boolean = true
+  mainTin: string = ""
+  mainIo: string = ""
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
@@ -56,6 +58,7 @@ export class ViewCaseDetailsComponent {
               if(tins.length==1){
                 this.singleTin = true
               }else{
+                this.mainTin = tins[0]
                 for(let i=1;i<tins.length;i=i+2){
                   let obj = {name: tins[i], tinno: tins[i+1]}
                   this.tins.push(obj)
@@ -64,13 +67,14 @@ export class ViewCaseDetailsComponent {
               }
 
               let iotemp = data.io
-              let ios = tintemp.split(",")
+              let ios = iotemp.split(",")
 
               if(ios.length==1){
                 this.singleIo = true
               }else{
+                this.mainIo = ios[0]
                 for(let i=1;i<ios.length;i=i+2){
-                  let obj = {name: ios[i+1], date: ios[i]}
+                  let obj = {name: ios[i], date: ios[i+1]}
                   this.ios.push(obj)
                 } 
                 console.log(this.ios)

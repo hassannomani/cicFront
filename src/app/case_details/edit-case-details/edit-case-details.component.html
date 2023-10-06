@@ -13,7 +13,28 @@
                         <input matInput formControlName="taxpayername">
                     </mat-form-field>
                 </td>
+            </tr>
+            <tr>
                 
+                <td>
+                    <mat-form-field class="example-full-width" >
+                        <mat-label>TIN</mat-label>
+                        <input matInput formControlName="tinno" matTooltip="Please input compulsory TIN at first, then TIN and Name respectively"
+                        >
+                    </mat-form-field>
+                </td>
+              
+
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>IO</mat-label>
+                    <input matInput  formControlName="io" type="text"  placeholder="IO" matTooltip="Please corrent IO at first, then Date and Name of the previous IOs respectively">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>NID</mat-label>
@@ -28,7 +49,8 @@
                         <input matInput formControlName="bin">
                     </mat-form-field>
                 </td>
-                
+            </tr>
+            <tr>
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>RJSC</mat-label>
@@ -36,60 +58,7 @@
                     </mat-form-field>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <mat-form-field appearance="fill" matInput class="example-full-width">
-                        <mat-label>No of Tin</mat-label>
-                        <mat-select matNativeControl required formControlName="tinmultiple" (selectionChange)="tinselection($event.value)">
-                            <mat-option value="">--Select--</mat-option>
-                            <mat-option  [value]="0">Single</mat-option>   
-                            <mat-option  [value]="1">Multiple</mat-option>   
-                        </mat-select>
-                    </mat-form-field>
-                </td>
-                <td *ngIf="!multitin && dirty">
-                    <mat-form-field class="example-full-width" >
-                        <mat-label>TIN</mat-label>
-                        <input matInput formControlName="tinno">
-                    </mat-form-field>
-                </td>
-                <td *ngIf="multitin && dirty" style="width: 100%;">
-                    <app-button
-                    [label]="buttonLabel"
-                    [color]="buttonColor" 
-                    [type]="buttonType"
-                    (click)="addAnother()"
-                    >
-                </app-button>
-                </td>
-
-            </tr>
-            <ng-container formArrayName="tinnos">
-                <ng-container *ngFor="let tinForms of tinnos.controls; let index = index;"  >
-
-                    <div [formGroupName]="index">
-                        <tr>
-                            <td>
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>TIN</mat-label>
-                                    <input matInput formControlName="tin">
-                                </mat-form-field>
-                            </td>
-                            
-                            <td>
-                                <mat-form-field class="example-semi-full-width">
-                                    <mat-label>Name</mat-label>
-                                    <input matInput formControlName="name">
-                                </mat-form-field>
-                                <mat-icon class="delete-btn example-small-width" (click)="deleteTin(index)" style="height:75px;">
-                                    delete_forever
-                                </mat-icon>
-                            </td>
-                        </tr>
-                   
-                    </div>
-                </ng-container>
-            </ng-container>   
+           
 
             <tr>
                 <td>
@@ -101,6 +70,8 @@
                     <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <mat-form-field class="example-full-width">
                     <mat-label>Date of Report Sending</mat-label>
@@ -114,13 +85,29 @@
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>Date of Receiving Completion Date</mat-label>
+                    <mat-label>Date of Receiving File from field office</mat-label>
                     <input matInput  formControlName="dateofcompletion"  [matDatepicker]="picker3">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
                     <mat-datepicker #picker3></mat-datepicker>
                     </mat-form-field>
                 </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>Type of File Receive</mat-label>
+                        <mat-select matNativeControl required formControlName="filetype">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option  value="IT">IT</mat-option>   
+                            <mat-option  value="VAT">VAT</mat-option>   
+                            <mat-option  value="CUSTOMS">CUSTOMS</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+
                 <td>
                     <mat-form-field class="example-full-width">
                     <mat-label>Date of File Sending Back</mat-label>
@@ -131,28 +118,20 @@
                     </mat-form-field>
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
+               
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>Date of Enlistment</mat-label>
-                    <input matInput  formControlName="fileenlisted"  [matDatepicker]="picker5">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker5"></mat-datepicker-toggle>
-                    <mat-datepicker #picker5></mat-datepicker>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Bank Search Date Exists</mat-label>
+                        <mat-label>Select Bank Search Date</mat-label>
                         <mat-select matNativeControl required formControlName="banksearchboolean" (selectionChange)="bankSearch($event.value)">
                             <mat-option value="">--Select--</mat-option>
-                            <mat-option  [value]="true">True</mat-option>   
-                            <mat-option  [value]="false">False</mat-option>   
+                            <mat-option  value="Yes">Yes</mat-option>   
+                            <mat-option  value="No">No</mat-option>   
                         </mat-select>
                     </mat-form-field>
                 </td>
-            </tr>
-            <tr *ngIf="showBanks">
+            </tr> -->
+            <tr>
                 <td>
                     <mat-form-field class="example-full-width">
                     <mat-label>Date of Bank Search</mat-label>
@@ -162,6 +141,8 @@
                     <mat-datepicker #picker6></mat-datepicker>
                     </mat-form-field>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <mat-form-field class="example-full-width">
                     <mat-label>Date of Bank Freeze</mat-label>
@@ -171,22 +152,46 @@
                     <mat-datepicker #picker7></mat-datepicker>
                     </mat-form-field>
                 </td>
+                    
             </tr>
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>IO</mat-label>
-                    <input matInput  formControlName="io" type="text"  placeholder="IO">
+                    <mat-label>Date of Bank Un Freeze</mat-label>
+                    <input matInput  formControlName="bankunfreezedate" [matDatepicker]="picker8">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker8"></mat-datepicker-toggle>
+                    <mat-datepicker #picker8></mat-datepicker>
                     </mat-form-field>
                 </td>
+            </tr>
+                
+            <tr>
+              
                 <td>
                     <mat-form-field appearance="fill" matInput class="example-full-width">
                         <mat-label>Court Issue</mat-label>
                         <mat-select matNativeControl required formControlName="courtissue">
                             <mat-option value="">--Select--</mat-option>
-                            <mat-option  [value]="true">True</mat-option>   
-                            <mat-option  [value]="false">False</mat-option>   
+                            <mat-option  value="Yes">Yes</mat-option>   
+                            <mat-option  value="No">No</mat-option>   
                         </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Amount Received By CIC</mat-label>
+                    <input matInput  formControlName="cicamount" type="text"  placeholder="Amount Received By CIC">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Amount Received By Field Office</mat-label>
+                    <input matInput  formControlName="fieldamount" type="text"  placeholder="Amount Received By Field Office">
                     </mat-form-field>
                 </td>
             </tr>

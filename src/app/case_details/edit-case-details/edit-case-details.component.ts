@@ -6,6 +6,8 @@ import { ActivatedRoute, Route } from '@angular/router';
 import { CaseDetailsService } from 'src/app/services/case-details-service/case-details.service';
 import {Title} from "@angular/platform-browser";
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarModule, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
+import {TooltipPosition, MatTooltipModule} from '@angular/material/tooltip';
+
 export interface tin {
   tin : string,
   name: string
@@ -39,13 +41,20 @@ export class EditCaseDetailsComponent implements OnInit{
     'courtissue':  new FormControl('',[Validators.required]),
     'comment':  new FormControl('',[Validators.required]),
     'status':  new FormControl('',[Validators.required]),
-    'createdby': new FormControl('',[Validators.required])
+    'createdby': new FormControl('',[Validators.required]),
+    'cicamount':  new FormControl('',[Validators.required]),
+    'fieldamount':  new FormControl('',[Validators.required]),
+    'filetype':  new FormControl('',[Validators.required]),
+    'bankunfreezedate':  new FormControl('',[Validators.required]),
   })
 
   tinForm = new FormGroup({
     'tin': new FormControl('',[Validators.required]),
     'name': new FormControl('',[Validators.required])
    })
+  
+  positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
+  position = new FormControl(this.positionOptions[1]);
   
   message : string = ""
   failed: boolean = false
@@ -68,6 +77,7 @@ export class EditCaseDetailsComponent implements OnInit{
   caseDetails: any = {}
   singleTin: Boolean = false
   tins: any =[]
+  id: string = ""
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
@@ -87,6 +97,7 @@ export class EditCaseDetailsComponent implements OnInit{
     .subscribe(paramsg=>{
       let id = paramsg['id']
       if(id!=""){
+        this.id = id
         this.caseDetailsServ.getACaseDetails(id).subscribe({
           next: (data) => {
             if(data.taxcasedtlsuuid!=undefined){
@@ -142,8 +153,11 @@ export class EditCaseDetailsComponent implements OnInit{
         //console.log(data)
         if(data?.taxcasedtlsuuid){
           this.message = "File updated successfully"
-          this.addCaseDetails.reset()
+          //this.addCaseDetails.reset()
           this.openSnackBar()
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['edit-case-detail'],{ queryParams: {id: this.id}});
+          }); 
         }
         else{
           this.message= "Failed to save file"
@@ -195,11 +209,7 @@ export class EditCaseDetailsComponent implements OnInit{
   loadCaseDetails(){
     this.addCaseDetails.get('taxcasedtlsuuid')?.setValue(this.caseDetails.taxcasedtlsuuid)
     this.addCaseDetails.get('taxpayername')?.setValue(this.caseDetails.taxpayername)
-    if(this.singleTin==true)
-      this.addCaseDetails.get('tinmultiple')?.setValue("0")
-    else
-    this.addCaseDetails.get('tinmultiple')?.setValue("1")
-    this.dirty=true
+    
     this.addCaseDetails.get('tinno')?.setValue(this.caseDetails.tinno)
 
     //this.addCaseDetails.get('tinno')?.setValue(this.caseDetails.tinno)
@@ -208,15 +218,18 @@ export class EditCaseDetailsComponent implements OnInit{
     this.addCaseDetails.get('nidno')?.setValue(this.caseDetails.nidno)
     this.addCaseDetails.get('io')?.setValue(this.caseDetails.io)
     this.addCaseDetails.get('fileinitdate')?.setValue(this.caseDetails.fileinitdate)
-    this.addCaseDetails.get('banksearchboolean')?.setValue(this.caseDetails.banksearchboolean)
     this.addCaseDetails.get('banksearchdate')?.setValue(this.caseDetails.banksearchdate)
     this.addCaseDetails.get('bankfreezedata')?.setValue(this.caseDetails.bankfreezedata)
+    this.addCaseDetails.get('bankunfreezedate')?.setValue(this.caseDetails.bankunfreezedate)
     this.addCaseDetails.get('dateofreportsend')?.setValue(this.caseDetails.dateofreportsend)
     this.addCaseDetails.get('dateofcompletion')?.setValue(this.caseDetails.dateofcompletion)
     this.addCaseDetails.get('dateofsendback')?.setValue(this.caseDetails.dateofsendback)
     this.addCaseDetails.get('fileenlisted')?.setValue(this.caseDetails.fileenlisted)
     this.addCaseDetails.get('courtissue')?.setValue(this.caseDetails.courtissue)
     this.addCaseDetails.get('comment')?.setValue(this.caseDetails.comment)
+    this.addCaseDetails.get('filetype')?.setValue(this.caseDetails.filetype)
+    this.addCaseDetails.get('cicamount')?.setValue(this.caseDetails.cicamount)
+    this.addCaseDetails.get('fieldamount')?.setValue(this.caseDetails.fieldamount)
   }
 
 }
