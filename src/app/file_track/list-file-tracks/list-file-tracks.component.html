@@ -26,6 +26,29 @@
       </mat-form-field>
 
       </div>
+    </div>
+    <div class="row align-items-start">
+
+      <div class="col">
+        <mat-form-field appearance="fill" matInput class="example-full-width">
+          <mat-label>Customs House</mat-label>
+          <mat-select matNativeControl required formControlName="customshouse">
+              <mat-option value="">--Select--</mat-option>
+              <mat-option *ngFor="let house of houses" [value]="house.name">{{house.name}}</mat-option>   
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col">
+        <mat-form-field appearance="fill" matInput class="example-full-width">
+          <mat-label>LC Stations</mat-label>
+          <mat-select matNativeControl required formControlName="lcstations">
+              <mat-option value="">--Select--</mat-option>
+              <mat-option *ngFor="let lc of lcstations" [value]="lc.name">{{lc.name}}</mat-option>   
+          </mat-select>
+        </mat-form-field>
+      </div>
+
       <div class="col">
         <app-button
           [label]="buttonLabelSr"
@@ -41,6 +64,13 @@
           (click)="clear()"
           >
         </app-button>
+
+        <app-button style="margin-left: 10px;"
+        [label]="buttonLabelClrAll"
+        [color]="buttonColor" 
+        [type]="buttonType"
+        (click)="clearAll()">
+        </app-button>
       </div>
       
     </div>
@@ -50,6 +80,8 @@
     
   </form>
 </div>
+
+ <p style="text-align: center;" *ngIf="activated"><b>You searched for {{criteria}} : {{searched}}</b></p>
 
   <table mat-table [dataSource]="fileTrackList" class="mat-elevation-z8">
   

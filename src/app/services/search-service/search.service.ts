@@ -9,7 +9,7 @@ import { CommonService } from '../common-service/common.service';
 })
 export class SearchService {
 
-  private urlcase : string ='http://localhost:8080/api/case-details/search/';
+  private urlcase : string ='http://localhost:8080/api/case-details-search/';
   private urlfile : string ='http://localhost:8080/api/file-track-search/';
 
 
@@ -40,5 +40,27 @@ export class SearchService {
   track_bin(bin: any): Observable<any>{
     let httpop = this.returnHTTPOptions()
     return this.http.get(this.urlfile+'bin/'+bin,httpop);
+  }
+  track_house(house: any): Observable<any>{
+    let httpop = this.returnHTTPOptions()
+    return this.http.get(this.urlfile+'house/'+house,httpop);
+  }
+  track_lc(lc: any): Observable<any>{
+    let httpop = this.returnHTTPOptions()
+    return this.http.get(this.urlfile+'lc/'+lc,httpop);
+  }
+  case_name(name: any): Observable<any>{
+    let httpop = this.returnHTTPOptions()
+    return this.http.get(this.urlcase+'name/'+name,httpop);
+  }
+
+  case_tin(tin: any): Observable<any>{
+    let httpop = this.returnHTTPOptions()
+    return this.http.get(this.urlcase+'tin/'+tin,httpop);
+  }
+
+  case_bin(bin: any): Observable<any>{
+    let httpop = this.returnHTTPOptions()
+    return this.http.get(this.urlcase+'bin/'+bin,httpop);
   }
 }

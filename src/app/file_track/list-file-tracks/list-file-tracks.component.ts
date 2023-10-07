@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import {Title} from "@angular/platform-browser";
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarModule, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
 import { SearchService } from 'src/app/services/search-service/search.service';
+import { forkJoin } from 'rxjs';
+import { CommonService } from 'src/app/services/common-service/common.service';
 
 @Component({
   selector: 'app-list-file-tracks',
@@ -15,9 +17,11 @@ import { SearchService } from 'src/app/services/search-service/search.service';
 export class ListFileTracksComponent implements OnInit{
 
   searchbox= new FormGroup({
-    'taxpayername':  new FormControl('',[Validators.required]),
-    'tinno':  new FormControl('',[Validators.required]),
-    'bin':  new FormControl('',[Validators.required])
+    'taxpayername':  new FormControl(null,[Validators.required]),
+    'tinno':  new FormControl(null,[Validators.pattern("^[0-9]*$")]),
+    'bin':  new FormControl(null,[Validators.pattern("^[0-9]*$")]),
+    'lcstations':  new FormControl(null,[]),
+    'customshouse':  new FormControl(null,[]),
   })
 
   message : string = ""
@@ -30,6 +34,7 @@ export class ListFileTracksComponent implements OnInit{
   buttonColor2: string = "warn"
   buttonLabelSr: string= "Search"
   buttonLabelClr: string= "Clear"
+  buttonLabelClrAll: string= "Clear All"
   buttonType: string = "button"
   errorMsg: string = ""
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
@@ -37,19 +42,26 @@ export class ListFileTracksComponent implements OnInit{
   fileTrackList : any = []
   displayedColumns: any = []
   tempFileTrackList: any =[]
+  houses: any = []
+  lcstations: any =[]
+  activated: boolean = false
+  criteria: string = ""
+  searched: string = ""
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
     private titleService:Title,
     private _snackBar: MatSnackBar,
     private fileTrackServ: FileTrackService,
-    private searchServ: SearchService
+    private searchServ: SearchService,
+    private commonServ: CommonService
   ){
     this.titleService.setTitle("Add to File Track");
   }
 
   ngOnInit(): void {
     this.loadAllFile()
+    this.loadHouseAndStations()
   }
 
   loadAllFile(){
@@ -57,6 +69,8 @@ export class ListFileTracksComponent implements OnInit{
       next: (data) => {
         if(data.length){
           this.fileTrackList = data
+          this.tempFileTrackList = this.fileTrackList
+
           this.displayedColumns = [ 'Serial','taxpayername','action']
         }else{
           this.message = "No data Found"
@@ -70,6 +84,25 @@ export class ListFileTracksComponent implements OnInit{
         this.openSnackBar()      
       }
     })
+  }
+
+
+  loadHouseAndStations(){
+    forkJoin([
+      this.commonServ.getHouses(),
+      this.commonServ.getlcstations()
+    ])
+    .subscribe({
+      next: (data) => {
+        //console.log(data)
+        this.houses = data[0];
+        this.lcstations = data[1];
+      },
+      error: (e) => {
+       
+          console.log("Error retrieving")
+      }
+    });
   }
 
   
@@ -120,66 +153,71 @@ export class ListFileTracksComponent implements OnInit{
     let name = this.searchbox.value['taxpayername']
     let tin = this.searchbox.value['tinno']
     let bin = this.searchbox.value['bin']
-    if(name!=''&&tin==''&&bin==''){
+    let house = this.searchbox.value['customshouse']
+    let lc = this.searchbox.value['lcstations']
+    if(name!=null&&tin==null&&bin==null&&house==null&&lc==null){
       this.searchServ.track_name(name).subscribe({
         next: (data) => {
-          if(data.length){
-            
-            // this.fileTrackList = data
-            // this.displayedColumns = [ 'Serial','taxpayername','action']
-          }else{
-            this.message = "No data Found"
-            this.openSnackBar()
-          }
-          
+          this.successHandler(data,"Name",name)
         },
         error: (e) => {
-          this.message = "Error occurred!"
-          this.openSnackBar()      
+          this.failureHandler(e);     
         }
       })
 
-    }else if(name==''&&tin!=''&&bin==''){
+    }else if(name==null&&tin!=null&&bin==null&&house==null&&lc==null){
 
       this.searchServ.track_tin(tin).subscribe({
         next: (data) => {
-          if(data.length){
-            
-            // this.fileTrackList = data
-            // this.displayedColumns = [ 'Serial','taxpayername','action']
-          }else{
-            this.message = "No data Found"
-            this.openSnackBar()
-          }
-          
+          this.successHandler(data,"TIN", tin)
         },
         error: (e) => {
-          this.message = "Error occurred!"
-          this.openSnackBar()      
+          this.failureHandler(e);     
         }
       })
 
-    }else if(name==''&&tin==''&&bin!=''){
+    }else if(name==null&&tin==null&&bin!=null&&house==null&&lc==null){
 
       this.searchServ.track_bin(bin).subscribe({
         next: (data) => {
-          if(data.length){
-            
-            // this.fileTrackList = data
-            // this.displayedColumns = [ 'Serial','taxpayername','action']
-          }else{
-            this.message = "No data Found"
-            this.openSnackBar()
-          }
-          
+          this.successHandler(data, "BIN",bin)
         },
         error: (e) => {
-          this.message = "Error occurred!"
-          this.openSnackBar()      
+          this.failureHandler(e);         
         }
       })
 
-    }else{
+    }else if(name==null&&tin==null&&bin==null&&house!=null&&lc==null){
+
+      this.searchServ.track_house(house).subscribe({
+        next: (data) => {
+          this.successHandler(data, "Customs House", house)
+        },
+        error: (e) => {
+          this.failureHandler(e);             
+        }
+      })
+
+    }
+    else if(name==null&&tin==null&&bin==null&&house==null&&lc!=null){
+
+      this.searchServ.track_lc(lc).subscribe({
+        next: (data) => {
+          this.successHandler(data, "LC Station", lc)
+        },
+        error: (e) => {
+          this.failureHandler(e);          
+        }
+      })
+
+    }
+    
+    else{
+      console.log(name)
+      console.log(tin)
+      console.log(bin)
+      console.log(house)
+      console.log(lc)
       this.message='Please choose one search field'
       this.openSnackBar()
     }
@@ -188,5 +226,33 @@ export class ListFileTracksComponent implements OnInit{
   clear(){
     this.searchbox.reset()
   }
+
+  successHandler(data: any, criteria: string, searched: any){
+    this.activated = true
+    this.criteria = criteria
+    this.searched = searched
+    if(data.length){
+       this.fileTrackList = data     
+       // this.fileTrackList = data
+       this.displayedColumns = [ 'Serial','taxpayername','action']
+    }else{
+      this.message = "No data Found"
+      this.openSnackBar()
+    }
+  }
+  failureHandler(err: any){
+    this.message = "Error occurred!"
+    this.openSnackBar() 
+    console.log(err)
+  }
+
+  clearAll(){
+    this.searchbox.reset()
+    console.log(this.tempFileTrackList)
+    this.fileTrackList = this.tempFileTrackList
+    //this.tempFileTrackList.length = 0
+    this.activated = false
+  }
+
 
 }

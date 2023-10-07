@@ -14,9 +14,9 @@ import { SearchService } from 'src/app/services/search-service/search.service';
 export class ListCaseDetailsComponent implements OnInit{
 
   searchbox= new FormGroup({
-    'taxpayername':  new FormControl('',[Validators.required]),
-    'tinno':  new FormControl('',[Validators.required]),
-    'bin':  new FormControl('',[Validators.required])
+    'taxpayername':  new FormControl(null,[]),
+    'tinno':  new FormControl(null,[Validators.pattern("^[0-9]*$")]),
+    'bin':  new FormControl(null,[Validators.pattern("^[0-9]*$")])
   })
 
   message : string = ""
@@ -27,6 +27,7 @@ export class ListCaseDetailsComponent implements OnInit{
   buttonLabel4: string= "Edit"
   buttonLabelSr: string= "Search"
   buttonLabelClr: string= "Clear"
+  buttonLabelClrAll: string= "Clear All"
   buttonColor: string = "primary"
   buttonColor2: string = "warn"
   buttonType: string = "button"
@@ -35,6 +36,11 @@ export class ListCaseDetailsComponent implements OnInit{
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   caseDetails : any = []
   displayedColumns: any = []
+  tempCaseDetailsList: any =[]
+  activated: boolean = false
+  criteria: string = ""
+  searched: string = ""
+
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
@@ -56,6 +62,8 @@ export class ListCaseDetailsComponent implements OnInit{
         if(data.length){
           this.caseDetails = data
           this.displayedColumns = [ 'Serial','taxpayername','action']
+          this.tempCaseDetailsList = this.caseDetails
+
         }else{
           this.message = "No data Found"
           this.openSnackBar()
@@ -116,12 +124,77 @@ export class ListCaseDetailsComponent implements OnInit{
 
   
   search(){
-    
+    let name = this.searchbox.value['taxpayername']
+    let tin = this.searchbox.value['tinno']
+    let bin = this.searchbox.value['bin']
+
+    if(name!=null&&tin==null&&bin==null){
+      this.searchServ.case_name(name).subscribe({
+        next: (data) => {
+          this.successHandler(data,"Name",name)
+        },
+        error: (e) => {
+          this.failureHandler(e);     
+        }
+      })
+
+    }else if(name==null&&tin!=null&&bin==null){
+
+      this.searchServ.case_tin(tin).subscribe({
+        next: (data) => {
+          this.successHandler(data,"TIN", tin)
+        },
+        error: (e) => {
+          this.failureHandler(e);     
+        }
+      })
+
+    }else if(name==null&&tin==null&&bin!=null){
+
+      this.searchServ.case_bin(bin).subscribe({
+        next: (data) => {
+          this.successHandler(data, "BIN",bin)
+        },
+        error: (e) => {
+          this.failureHandler(e);         
+        }
+      })
+    }else{
+      this.message='Please choose one search field'
+      this.openSnackBar()
+    }
+
 
   }
 
   clear(){
     this.searchbox.reset()
+  }
+
+  successHandler(data: any, criteria: string, searched: any){
+    this.activated = true
+    this.criteria = criteria
+    this.searched = searched
+    if(data.length){
+       this.caseDetails = data     
+       // this.fileTrackList = data
+       this.displayedColumns = [ 'Serial','taxpayername','action']
+    }else{
+      this.message = "No data Found"
+      this.openSnackBar()
+    }
+  }
+  failureHandler(err: any){
+    this.message = "Error occurred!"
+    this.openSnackBar() 
+    console.log(err)
+  }
+
+  clearAll(){
+    this.searchbox.reset()
+    this.caseDetails = this.tempCaseDetailsList
+    //this.tempFileTrackList.length = 0
+    this.activated = false
   }
 
 }

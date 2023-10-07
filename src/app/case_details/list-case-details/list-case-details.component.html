@@ -40,6 +40,12 @@
             (click)="clear()"
             >
           </app-button>
+          <app-button style="margin-left: 10px;"
+          [label]="buttonLabelClrAll"
+          [color]="buttonColor" 
+          [type]="buttonType"
+          (click)="clearAll()">
+          </app-button>
         </div>
         
       </div>
@@ -50,6 +56,7 @@
     </form>
   </div>
   
+  <p style="text-align: center;" *ngIf="activated"><b>You searched for {{criteria}} : {{searched}}</b></p>
 
   <table mat-table [dataSource]="caseDetails" class="mat-elevation-z8">
   
