@@ -5,7 +5,7 @@ import { CaseDetailsService } from 'src/app/services/case-details-service/case-d
 import { Router } from '@angular/router';
 import {Title} from "@angular/platform-browser";
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarModule, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
-
+import { SearchService } from 'src/app/services/search-service/search.service';
 @Component({
   selector: 'app-list-case-details',
   templateUrl: './list-case-details.component.html',
@@ -41,6 +41,7 @@ export class ListCaseDetailsComponent implements OnInit{
     private titleService:Title,
     private _snackBar: MatSnackBar,
     private casedetailServ: CaseDetailsService,
+    private searchServ: SearchService
   ){
     this.titleService.setTitle("List of Case Details");
   }
@@ -115,6 +116,7 @@ export class ListCaseDetailsComponent implements OnInit{
 
   
   search(){
+    
 
   }
 

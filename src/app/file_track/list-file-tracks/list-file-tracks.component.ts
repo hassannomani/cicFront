@@ -5,6 +5,7 @@ import { FileTrackService } from 'src/app/services/file-track-service/file-track
 import { Router } from '@angular/router';
 import {Title} from "@angular/platform-browser";
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarModule, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
+import { SearchService } from 'src/app/services/search-service/search.service';
 
 @Component({
   selector: 'app-list-file-tracks',
@@ -35,12 +36,14 @@ export class ListFileTracksComponent implements OnInit{
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   fileTrackList : any = []
   displayedColumns: any = []
+  tempFileTrackList: any =[]
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
     private titleService:Title,
     private _snackBar: MatSnackBar,
     private fileTrackServ: FileTrackService,
+    private searchServ: SearchService
   ){
     this.titleService.setTitle("Add to File Track");
   }
@@ -114,7 +117,72 @@ export class ListFileTracksComponent implements OnInit{
   }
 
   search(){
+    let name = this.searchbox.value['taxpayername']
+    let tin = this.searchbox.value['tinno']
+    let bin = this.searchbox.value['bin']
+    if(name!=''&&tin==''&&bin==''){
+      this.searchServ.track_name(name).subscribe({
+        next: (data) => {
+          if(data.length){
+            
+            // this.fileTrackList = data
+            // this.displayedColumns = [ 'Serial','taxpayername','action']
+          }else{
+            this.message = "No data Found"
+            this.openSnackBar()
+          }
+          
+        },
+        error: (e) => {
+          this.message = "Error occurred!"
+          this.openSnackBar()      
+        }
+      })
 
+    }else if(name==''&&tin!=''&&bin==''){
+
+      this.searchServ.track_tin(tin).subscribe({
+        next: (data) => {
+          if(data.length){
+            
+            // this.fileTrackList = data
+            // this.displayedColumns = [ 'Serial','taxpayername','action']
+          }else{
+            this.message = "No data Found"
+            this.openSnackBar()
+          }
+          
+        },
+        error: (e) => {
+          this.message = "Error occurred!"
+          this.openSnackBar()      
+        }
+      })
+
+    }else if(name==''&&tin==''&&bin!=''){
+
+      this.searchServ.track_bin(bin).subscribe({
+        next: (data) => {
+          if(data.length){
+            
+            // this.fileTrackList = data
+            // this.displayedColumns = [ 'Serial','taxpayername','action']
+          }else{
+            this.message = "No data Found"
+            this.openSnackBar()
+          }
+          
+        },
+        error: (e) => {
+          this.message = "Error occurred!"
+          this.openSnackBar()      
+        }
+      })
+
+    }else{
+      this.message='Please choose one search field'
+      this.openSnackBar()
+    }
   }
 
   clear(){
