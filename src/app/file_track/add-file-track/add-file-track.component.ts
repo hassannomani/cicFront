@@ -18,19 +18,19 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarModule, MatSnack
 export class AddFileTrackComponent implements OnInit{
 
   addFileTrackDetails = new FormGroup({
-    'taxpayername':  new FormControl('',[Validators.required]),
+    'taxpayername':  new FormControl(''),
     'fileno':  new FormControl('',[Validators.required]),
     'tin':  new FormControl('',[Validators.required]),
-    'bin':  new FormControl('',[Validators.required]),
-    'nid':  new FormControl('',[Validators.required]),
-    'customshouse':  new FormControl('',[Validators.required]),
-    'lcstation':  new FormControl('',[Validators.required]),
-    'rackno':  new FormControl('',[Validators.required]),
-    'storagedate':  new FormControl('',[Validators.required]),
-    'jurisdiction':  new FormControl('',[Validators.required]),
-    'details':  new FormControl('',[Validators.required]),
-    'status':  new FormControl('',[Validators.required]),
-    'classification': new FormControl('',[Validators.required])
+    'bin':  new FormControl(''),
+    'nid':  new FormControl(''),
+    'customshouse':  new FormControl(''),
+    'lcstation':  new FormControl(''),
+    'rackno':  new FormControl(''),
+    'storagedate':  new FormControl(''),
+    'jurisdiction':  new FormControl(''),
+    'details':  new FormControl(''),
+    'status':  new FormControl(''),
+    'classification': new FormControl('')
   })
 
   message : string = ""

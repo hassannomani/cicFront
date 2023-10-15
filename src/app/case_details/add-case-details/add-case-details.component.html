@@ -18,6 +18,14 @@
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
+                    <mat-label>File No</mat-label>
+                    <input matInput  formControlName="fileno" type="text"  placeholder="File No">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
                         <mat-label>TIN</mat-label>
                         <input matInput formControlName="tinno">
                     </mat-form-field>
@@ -145,30 +153,6 @@
                     </mat-form-field>
                 </td>
             </tr>
-
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                    <mat-label>File Initiation Date</mat-label>
-                    <input matInput  formControlName="fileinitdate"  [matDatepicker]="picker2">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
-                    </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-               <td>
-                    <mat-form-field class="example-full-width">
-                    <mat-label>Date of Report Sending</mat-label>
-                    <input matInput  formControlName="dateofreportsend" [matDatepicker]="picker">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                </td> 
-            </tr>
-                
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
@@ -180,7 +164,69 @@
                     </mat-form-field>
                 </td>
             </tr>
+
             <tr>
+                <td>
+                   <mat-form-field class="example-full-width">
+                       <mat-label>File Required?</mat-label>
+                       <mat-select matNativeControl required formControlName="filerequiredboolean" (selectionChange)="filerequired($event.value)">
+                           <mat-option value="">--Select--</mat-option>
+                           <mat-option  value="Yes">Yes</mat-option>   
+                           <mat-option  value="No">No</mat-option>   
+                       </mat-select>
+                   </mat-form-field>
+               </td>
+           </tr>
+
+           <tr *ngIf="fileRequired">
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Investigation required to be taken</mat-label>
+                        <mat-select matNativeControl required formControlName="Investigation" (selectionChange)="investigationDone($event.value)">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option  value="Yes">Yes</mat-option>   
+                            <mat-option  value="No">No</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr *ngIf="fileRequired && !investigation">
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Date of file sending back to the field office</mat-label>
+                    <input matInput  formControlName="dateofsendbacktofield"  [matDatepicker]="picker9">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker9"></mat-datepicker-toggle>
+                    <mat-datepicker #picker9></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr *ngIf="fileRequired">
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Any other investigation?</mat-label>
+                    <input matInput  formControlName="otherinvestigation" type="text"  placeholder="Other Investigation">
+                    </mat-form-field>
+                </td>
+            </tr>
+
+
+
+            <tr *ngIf="fileRequired">
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Date of authorization and initiation</mat-label>
+                    <input matInput  formControlName="fileinitdate"  [matDatepicker]="picker2">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+            
+            <tr *ngIf="fileRequired">
                 <td>
                     <mat-form-field appearance="fill" matInput class="example-full-width">
                         <mat-label>Type of File Receive</mat-label>
@@ -193,22 +239,11 @@
                     </mat-form-field>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                    <mat-label>Date of File Sending Back</mat-label>
-                    <input matInput  formControlName="dateofsendback" [matDatepicker]="picker4">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
-                    <mat-datepicker #picker4></mat-datepicker>
-                    </mat-form-field>
-                </td>
-            </tr>
                 
-            <tr>
+            <tr *ngIf="fileRequired">
                  <td>
                     <mat-form-field class="example-full-width">
-                        <mat-label>Select Bank Search Date</mat-label>
+                        <mat-label>Select Bank/NBA Search Date</mat-label>
                         <mat-select matNativeControl required formControlName="banksearchboolean" (selectionChange)="bankSearch($event.value)">
                             <mat-option value="">--Select--</mat-option>
                             <mat-option  value="Yes">Yes</mat-option>   
@@ -218,10 +253,10 @@
                 </td>
             </tr>
                
-            <tr *ngIf="showBanks">
+            <tr *ngIf="showBanks && fileRequired">
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>Date of Bank Search</mat-label>
+                    <mat-label>Date of Bank/NBA Search</mat-label>
                     <input matInput  formControlName="banksearchdate"  [matDatepicker]="picker6">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker6"></mat-datepicker-toggle>
@@ -229,10 +264,10 @@
                     </mat-form-field>
                 </td>
             </tr>
-            <tr *ngIf="showBanks">
+            <tr *ngIf="showBanks && fileRequired">
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>Date of Bank Freeze</mat-label>
+                    <mat-label>Date of Bank/NBA Freeze</mat-label>
                     <input matInput  formControlName="bankfreezedate" [matDatepicker]="picker7">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker7"></mat-datepicker-toggle>
@@ -240,10 +275,10 @@
                     </mat-form-field>
                 </td>
             </tr>
-            <tr *ngIf="showBanks">
+            <tr *ngIf="showBanks && fileRequired">
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>Date of Bank Un Freeze</mat-label>
+                    <mat-label>Date of Bank/NBA Un Freeze</mat-label>
                     <input matInput  formControlName="bankunfreezedate" [matDatepicker]="picker8">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker8"></mat-datepicker-toggle>
@@ -253,11 +288,11 @@
             </tr>
                 
         
-            <tr>
+            <tr *ngIf="fileRequired">
                 <td>
                     <mat-form-field appearance="fill" matInput class="example-full-width">
                         <mat-label>Court Issue</mat-label>
-                        <mat-select matNativeControl required formControlName="courtissue">
+                        <mat-select matNativeControl required formControlName="courtissue" (selectionChange)="courtissuecheck($event.value)">
                             <mat-option value="">--Select--</mat-option>
                             <mat-option  value="Yes">Yes</mat-option>   
                             <mat-option  value="No">No</mat-option>   
@@ -265,7 +300,17 @@
                     </mat-form-field>
                 </td>
             </tr>
-            <tr>
+
+            <tr *ngIf="fileRequired && courtissue">
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Remarks</mat-label>
+                    <input matInput  formControlName="courtissueremarks" type="text"  placeholder="Remarks">
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr *ngIf="fileRequired">
                 <td>
                     <mat-form-field class="example-full-width">
                     <mat-label>Amount Received By CIC</mat-label>
@@ -273,11 +318,35 @@
                     </mat-form-field>
                 </td>
             </tr>
-            <tr>
+            <tr *ngIf="fileRequired">
                 <td>
                     <mat-form-field class="example-full-width">
                     <mat-label>Amount Received By Field Office</mat-label>
                     <input matInput  formControlName="fieldamount" type="text"  placeholder="Amount Received By Field Office">
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr *ngIf="fileRequired">
+                <td>
+                     <mat-form-field class="example-full-width">
+                     <mat-label>Date of Report Sending</mat-label>
+                     <input matInput  formControlName="dateofreportsend" [matDatepicker]="picker">
+                     <mat-hint>MM/DD/YYYY</mat-hint>
+                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                     <mat-datepicker #picker></mat-datepicker>
+                     </mat-form-field>
+                 </td> 
+             </tr>
+
+             <tr *ngIf="fileRequired">
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Date of File Sending Back</mat-label>
+                    <input matInput  formControlName="dateofsendback" [matDatepicker]="picker4">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
                     </mat-form-field>
                 </td>
             </tr>

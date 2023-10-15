@@ -29,7 +29,7 @@ td {
     height: 60px;
 }
 
-tr{
+tr, div>tr{
   clear: left;
   width: 70%;
   margin-left: 15%;
@@ -40,6 +40,9 @@ tr{
   display: block;
   overflow: hidden;
  
+}
+div{
+  width: 100%;;
 }
 
 .tinform>tr{

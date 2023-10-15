@@ -23,31 +23,37 @@ export interface tin {
 export class AddCaseDetailsComponent implements OnInit{
 
   addCaseDetails = new FormGroup({
-    'taxpayername':  new FormControl('',[Validators.required]),
+    'taxpayername':  new FormControl(''),
+    'fileno':  new FormControl(''),
     'tinno':  new FormControl('',[Validators.required]),
     'tinnos': this.fb.array([]),
-    'tinmultiple':  new FormControl('',[Validators.required]),
-    'nidno':  new FormControl('',[Validators.required]),
-    'bin':  new FormControl('',[Validators.required]),
-    'rjsc':  new FormControl('',[Validators.required]),
-    'io':  new FormControl('',[Validators.required]),
+    'tinmultiple':  new FormControl(''),
+    'nidno':  new FormControl(''),
+    'bin':  new FormControl(''),
+    'rjsc':  new FormControl(''),
+    'io':  new FormControl(''),
     'ios': this.fb.array([]),
-    'fileinitdate':  new FormControl('',[Validators.required]),
-    'banksearchboolean':  new FormControl('',[Validators.required]),
-    'banksearchdate':  new FormControl('',[Validators.required]),
-    'bankfreezedate':  new FormControl('',[Validators.required]),
-    'dateofreportsend':  new FormControl('',[Validators.required]),
-    'dateofcompletion':  new FormControl('',[Validators.required]),
-    'dateofsendback':  new FormControl('',[Validators.required]),
-    'fileenlisted':  new FormControl('',[Validators.required]),
-    'courtissue':  new FormControl('',[Validators.required]),
-    'comment':  new FormControl('',[Validators.required]),
-    'status':  new FormControl('',[Validators.required]),
-    'cicamount':  new FormControl('',[Validators.required]),
-    'fieldamount':  new FormControl('',[Validators.required]),
-    'filetype':  new FormControl('',[Validators.required]),
-    'bankunfreezedate':  new FormControl('',[Validators.required]),
-    'createdby': new FormControl('',[Validators.required])
+    'dateofsendbacktofield':  new FormControl(''),
+    'fileinitdate':  new FormControl(''),
+    'banksearchboolean':  new FormControl(''),
+    'banksearchdate':  new FormControl(''),
+    'bankfreezedate':  new FormControl(''),
+    'dateofreportsend':  new FormControl(''),
+    'dateofcompletion':  new FormControl(''),
+    'dateofsendback':  new FormControl(''),
+    'fileenlisted':  new FormControl(''),
+    'courtissue':  new FormControl(''),
+    'courtissueremarks':  new FormControl(''),
+    'comment':  new FormControl(''),
+    'status':  new FormControl(''),
+    'cicamount':  new FormControl(''),
+    'fieldamount':  new FormControl(''),
+    'filetype':  new FormControl(''),
+    'bankunfreezedate':  new FormControl(''),
+    'createdby': new FormControl(''),
+    'filerequiredboolean': new FormControl(''),
+    'investigation': new FormControl(''),
+    'otherinvestigation': new FormControl('')
   })
 
   tinForm = new FormGroup({
@@ -60,7 +66,7 @@ export class AddCaseDetailsComponent implements OnInit{
     'name': new FormControl('',[Validators.required]),
     'date': new FormControl('',[Validators.required]),
    })
-  
+  fileRequired: boolean = false
   message : string = ""
   failed: boolean = false
   buttonLabel: string= "Add"
@@ -83,6 +89,8 @@ export class AddCaseDetailsComponent implements OnInit{
   }
   localStore : any ={}
   createdBy: string = ""
+  investigation: boolean = false
+  courtissue: boolean = false
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
@@ -196,7 +204,9 @@ export class AddCaseDetailsComponent implements OnInit{
   }
 
   bankSearch(value:any){
-    this.showBanks = true
+    //this.showBanks = true
+    this.showBanks = value=="Yes"? true : false
+
   }
 
   openSnackBar() {
@@ -206,5 +216,16 @@ export class AddCaseDetailsComponent implements OnInit{
       duration: 5 * 1000,
 
     });
+  }
+  filerequired(value:any){
+    this.fileRequired = value=="Yes"? true : false
+  }
+
+  investigationDone(value:any){
+    this.investigation = value=="Yes"? true : false
+  }
+
+  courtissuecheck(value:any){
+    this.courtissue = value=="Yes"? true : false
   }
 }

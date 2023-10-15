@@ -15,6 +15,14 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>File No</mat-label>
+                    <input matInput  formControlName="fileno" type="text"  placeholder="File No">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
                 
                 <td>
                     <mat-form-field class="example-full-width" >
@@ -58,27 +66,26 @@
                     </mat-form-field>
                 </td>
             </tr>
-           
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Date of file sending back to the field office</mat-label>
+                    <input matInput  formControlName="dateofsendbacktofield"  [matDatepicker]="picker9">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker9"></mat-datepicker-toggle>
+                    <mat-datepicker #picker9></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
 
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>File Initiation Date</mat-label>
+                    <mat-label>Date of authorization and initiation</mat-label>
                     <input matInput  formControlName="fileinitdate"  [matDatepicker]="picker2">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
-                    </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                    <mat-label>Date of Report Sending</mat-label>
-                    <input matInput  formControlName="dateofreportsend" [matDatepicker]="picker">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                 </td>
             </tr>
@@ -95,6 +102,15 @@
             </tr>
             <tr>
                 <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Any other investigation?</mat-label>
+                    <input matInput  formControlName="otherinvestigation" type="text"  placeholder="Other Investigation">
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
                     <mat-form-field appearance="fill" matInput class="example-full-width">
                         <mat-label>Type of File Receive</mat-label>
                         <mat-select matNativeControl required formControlName="filetype">
@@ -106,18 +122,7 @@
                     </mat-form-field>
                 </td>
             </tr>
-            <tr>
-
-                <td>
-                    <mat-form-field class="example-full-width">
-                    <mat-label>Date of File Sending Back</mat-label>
-                    <input matInput  formControlName="dateofsendback" [matDatepicker]="picker4">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
-                    <mat-datepicker #picker4></mat-datepicker>
-                    </mat-form-field>
-                </td>
-            </tr>
+          
             <!-- <tr>
                
                 <td>
@@ -134,7 +139,7 @@
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>Date of Bank Search</mat-label>
+                    <mat-label>Date of Bank/NBA Search</mat-label>
                     <input matInput  formControlName="banksearchdate"  [matDatepicker]="picker6">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker6"></mat-datepicker-toggle>
@@ -145,7 +150,7 @@
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>Date of Bank Freeze</mat-label>
+                    <mat-label>Date of Bank/NBA Freeze</mat-label>
                     <input matInput  formControlName="bankfreezedata" [matDatepicker]="picker7">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker7"></mat-datepicker-toggle>
@@ -157,7 +162,7 @@
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>Date of Bank Un Freeze</mat-label>
+                    <mat-label>Date of Bank/NBA Un Freeze</mat-label>
                     <input matInput  formControlName="bankunfreezedate" [matDatepicker]="picker8">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker8"></mat-datepicker-toggle>
@@ -182,6 +187,15 @@
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
+                    <mat-label>Remarks</mat-label>
+                    <input matInput  formControlName="courtissueremarks" type="text"  placeholder="Remarks">
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
                     <mat-label>Amount Received By CIC</mat-label>
                     <input matInput  formControlName="cicamount" type="text"  placeholder="Amount Received By CIC">
                     </mat-form-field>
@@ -203,6 +217,19 @@
                     </mat-form-field>
                 </td>
             </tr>
+            <tr>
+
+                <td>
+                    <mat-form-field class="example-full-width">
+                    <mat-label>Date of File Sending Back</mat-label>
+                    <input matInput  formControlName="dateofsendback" [matDatepicker]="picker4">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+            
             <tr class="example-full-width">
                 <td>
                     <app-button

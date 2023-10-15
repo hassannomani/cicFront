@@ -21,31 +21,37 @@ export interface tin {
 export class EditCaseDetailsComponent implements OnInit{
 
   addCaseDetails = new FormGroup({
-    'taxcasedtlsuuid':  new FormControl('',[Validators.required]),
-    'taxpayername':  new FormControl('',[Validators.required]),
+    'taxcasedtlsuuid':  new FormControl(''),
+    'taxpayername':  new FormControl(''),
     'tinno':  new FormControl('',[Validators.required]),
+    'fileno':  new FormControl(''),
     'tinnos': this.fb.array([]),
-    'tinmultiple':  new FormControl('',[Validators.required]),
-    'nidno':  new FormControl('',[Validators.required]),
-    'bin':  new FormControl('',[Validators.required]),
-    'rjsc':  new FormControl('',[Validators.required]),
-    'io':  new FormControl('',[Validators.required]),
-    'fileinitdate':  new FormControl('',[Validators.required]),
-    'banksearchboolean':  new FormControl('',[Validators.required]),
-    'banksearchdate':  new FormControl('',[Validators.required]),
-    'bankfreezedata':  new FormControl('',[Validators.required]),
-    'dateofreportsend':  new FormControl('',[Validators.required]),
-    'dateofcompletion':  new FormControl('',[Validators.required]),
-    'dateofsendback':  new FormControl('',[Validators.required]),
-    'fileenlisted':  new FormControl('',[Validators.required]),
-    'courtissue':  new FormControl('',[Validators.required]),
-    'comment':  new FormControl('',[Validators.required]),
-    'status':  new FormControl('',[Validators.required]),
-    'createdby': new FormControl('',[Validators.required]),
-    'cicamount':  new FormControl('',[Validators.required]),
-    'fieldamount':  new FormControl('',[Validators.required]),
-    'filetype':  new FormControl('',[Validators.required]),
-    'bankunfreezedate':  new FormControl('',[Validators.required]),
+    'tinmultiple':  new FormControl(''),
+    'nidno':  new FormControl(''),
+    'bin':  new FormControl(''),
+    'rjsc':  new FormControl(''),
+    'io':  new FormControl(''),
+    'fileinitdate':  new FormControl(''),
+    'banksearchboolean':  new FormControl(''),
+    'banksearchdate':  new FormControl(''),
+    'bankfreezedata':  new FormControl(''),
+    'dateofreportsend':  new FormControl(''),
+    'dateofcompletion':  new FormControl(''),
+    'dateofsendback':  new FormControl(''),
+    'fileenlisted':  new FormControl(''),
+    'courtissue':  new FormControl(''),
+    'comment':  new FormControl(''),
+    'status':  new FormControl(''),
+    'createdby': new FormControl(''),
+    'cicamount':  new FormControl(''),
+    'fieldamount':  new FormControl(''),
+    'filetype':  new FormControl(''),
+    'bankunfreezedate':  new FormControl(''),
+    'dateofsendbacktofield':  new FormControl(''),
+    'courtissueremarks':  new FormControl(''),
+    'otherinvestigation': new FormControl('')
+
+
   })
 
   tinForm = new FormGroup({
@@ -211,6 +217,7 @@ export class EditCaseDetailsComponent implements OnInit{
     this.addCaseDetails.get('taxpayername')?.setValue(this.caseDetails.taxpayername)
     
     this.addCaseDetails.get('tinno')?.setValue(this.caseDetails.tinno)
+    this.addCaseDetails.get('fileno')?.setValue(this.caseDetails.fileno)
 
     //this.addCaseDetails.get('tinno')?.setValue(this.caseDetails.tinno)
     this.addCaseDetails.get('bin')?.setValue(this.caseDetails.bin)
@@ -223,10 +230,13 @@ export class EditCaseDetailsComponent implements OnInit{
     this.addCaseDetails.get('bankunfreezedate')?.setValue(this.caseDetails.bankunfreezedate)
     this.addCaseDetails.get('dateofreportsend')?.setValue(this.caseDetails.dateofreportsend)
     this.addCaseDetails.get('dateofcompletion')?.setValue(this.caseDetails.dateofcompletion)
+    this.addCaseDetails.get('dateofsendbacktofield')?.setValue(this.caseDetails.dateofsendbacktofield)
     this.addCaseDetails.get('dateofsendback')?.setValue(this.caseDetails.dateofsendback)
     this.addCaseDetails.get('fileenlisted')?.setValue(this.caseDetails.fileenlisted)
     this.addCaseDetails.get('courtissue')?.setValue(this.caseDetails.courtissue)
     this.addCaseDetails.get('comment')?.setValue(this.caseDetails.comment)
+    this.addCaseDetails.get('courtissueremarks')?.setValue(this.caseDetails.courtissueremarks)
+    this.addCaseDetails.get('otherinvestigation')?.setValue(this.caseDetails.otherinvestigation)
     this.addCaseDetails.get('filetype')?.setValue(this.caseDetails.filetype)
     this.addCaseDetails.get('cicamount')?.setValue(this.caseDetails.cicamount)
     this.addCaseDetails.get('fieldamount')?.setValue(this.caseDetails.fieldamount)
