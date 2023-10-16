@@ -1,9 +1,16 @@
 <div class="login-container">
     
     <div class="login-left">
-      <h1><b>Welcome to the</b></h1>
-      <h1 class="title"><b>CIC Office Management System</b></h1>
-      <h1><b>of NBR</b></h1>
+      <div class="row">
+        <div class="col">
+          <img src="../../../assets/img/cic.png" alt="" class="ciclogo">
+        </div>
+        <div class="col" style="text-align: center;margin-top: 10%;">
+          <h1><b>Welcome to</b></h1>
+          <h1 class="title"><b>CIC Office Management System</b></h1>
+        </div>
+      </div>
+     
      
     </div>
     <div class="login-form">
@@ -55,12 +62,12 @@
           (click)="login()"
           ></app-button>
           
-          <app-button style="margin-left:15px"
+          <!-- <app-button style="margin-left:15px"
           [label]="buttonLabel2"
           [color]="buttonColor" 
           [type]="buttonType2"
           (click)="register()"
-          ></app-button>
+          ></app-button> -->
           <br>
          
         </div>

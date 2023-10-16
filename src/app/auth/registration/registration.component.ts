@@ -23,7 +23,7 @@ export class RegistrationComponent implements OnInit{
   })
   message : string = ""
   failed: boolean = false
-  buttonLabel: string= "Log In"
+  buttonLabel: string= "Add"
   buttonColor: string = "primary"
   buttonType: string = "button"
   errorMsg: string = ""
