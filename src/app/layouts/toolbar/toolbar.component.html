@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="isLoggedIn">
     <mat-toolbar-row>
         <!-- <button mat-icon-button (click)="sidenav.toggle()">
             <mat-icon >menu</mat-icon>
@@ -9,12 +9,12 @@
 
             Central Intelligence Cell
         </h2>
-        <div class="semileft" *ngIf="isLoggedIn">
+        <div class="semileft">
             
         </div>
         <div class="right">
             
-            <div class="icon" *ngIf="isLoggedIn">
+            <div class="icon">
                 <i class="material-icons">account_circle</i>
             </div>
             <div class="text">
