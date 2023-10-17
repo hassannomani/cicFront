@@ -63,4 +63,9 @@ export class SearchService {
     let httpop = this.returnHTTPOptions()
     return this.http.get(this.urlcase+'bin/'+bin,httpop);
   }
+
+  case_io(io: any): Observable<any>{
+    let httpop = this.returnHTTPOptions()
+    return this.http.get(this.urlcase+'io/'+io,httpop);
+  }
 }

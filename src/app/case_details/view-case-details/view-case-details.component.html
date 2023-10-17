@@ -42,6 +42,7 @@
     <p>RJSC: {{caseDetails.rjsc}}</p>
     <p>File Initiation Date: {{caseDetails.fileinitdate | date}}</p>
     <p>Report Sending Date: {{caseDetails.dateofreportsend | date}}</p>
+    <p>Date of sending File back to field office : {{caseDetails.dateofsendbacktofield | date}}</p>
     <p>Date of Receiving File from field office : {{caseDetails.dateofcompletion | date}}</p>
     <p>File Type : {{caseDetails.filetype}}</p>
     <p>Report Sending back date: {{caseDetails.dateofsendback | date}}</p>
@@ -50,6 +51,8 @@
     <p>Bank Unfreezing date: {{caseDetails.bankunfreezedate | date}}</p>
     <p>Amount Received by CIC: {{caseDetails.cicamount }}BDT</p>
     <p>Amount Received by Field OFfice: {{caseDetails.fieldamount }}BDT</p>
+    <p>Investigation done?: {{caseDetails.otherinvestigation }}</p>
     <p>Court Issue: {{caseDetails.courtissue}}</p>
+    <p>Court Issue: {{caseDetails.courtissueremarks}}</p>
     <p>Comment: {{caseDetails.comment}}</p>
 </div>

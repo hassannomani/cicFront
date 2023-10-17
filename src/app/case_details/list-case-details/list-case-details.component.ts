@@ -15,6 +15,7 @@ export class ListCaseDetailsComponent implements OnInit{
 
   searchbox= new FormGroup({
     'taxpayername':  new FormControl(null,[]),
+    'io':  new FormControl(null,[]),
     'tinno':  new FormControl(null,[Validators.pattern("^[0-9]*$")]),
     'bin':  new FormControl(null,[Validators.pattern("^[0-9]*$")])
   })
@@ -127,8 +128,9 @@ export class ListCaseDetailsComponent implements OnInit{
     let name = this.searchbox.value['taxpayername']
     let tin = this.searchbox.value['tinno']
     let bin = this.searchbox.value['bin']
+    let io = this.searchbox.value['io']
 
-    if(name!=null&&tin==null&&bin==null){
+    if(name!=null&&tin==null&&bin==null&&io==null){
       this.searchServ.case_name(name).subscribe({
         next: (data) => {
           this.successHandler(data,"Name",name)
@@ -138,7 +140,7 @@ export class ListCaseDetailsComponent implements OnInit{
         }
       })
 
-    }else if(name==null&&tin!=null&&bin==null){
+    }else if(name==null&&tin!=null&&bin==null&&io==null){
 
       this.searchServ.case_tin(tin).subscribe({
         next: (data) => {
@@ -149,7 +151,7 @@ export class ListCaseDetailsComponent implements OnInit{
         }
       })
 
-    }else if(name==null&&tin==null&&bin!=null){
+    }else if(name==null&&tin==null&&bin!=null&&io==null){
 
       this.searchServ.case_bin(bin).subscribe({
         next: (data) => {
@@ -159,7 +161,18 @@ export class ListCaseDetailsComponent implements OnInit{
           this.failureHandler(e);         
         }
       })
-    }else{
+    }else if(name==null&&tin==null&&bin==null&&io!=null){
+
+      this.searchServ.case_io(io).subscribe({
+        next: (data) => {
+          this.successHandler(data, "BIN",bin)
+        },
+        error: (e) => {
+          this.failureHandler(e);         
+        }
+      })
+    }
+    else{
       this.message='Please choose one search field'
       this.openSnackBar()
     }
