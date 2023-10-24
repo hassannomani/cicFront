@@ -5,7 +5,7 @@ export interface storedUser {
   username: string,
   token: string,
   roles: String,
-  email: String
+  designation: String
 }
 export interface storedAgntReptv{
   agent: {},
@@ -21,9 +21,9 @@ export class LocalStorageService {
   saveStorageItems(obj :any){
 
     localStorage.setItem('token', JSON.stringify(obj.token));
-    localStorage.setItem('id', JSON.stringify(obj.id));
+    localStorage.setItem('id', JSON.stringify(obj.uuid));
     localStorage.setItem('username', JSON.stringify(obj.username));
-    localStorage.setItem('email', JSON.stringify(obj.email));
+    localStorage.setItem('designation', JSON.stringify(obj.designation));
     localStorage.setItem('role', JSON.stringify(obj.roles[0]));
   }
 
@@ -33,7 +33,7 @@ export class LocalStorageService {
       "id": localStorage.getItem('id'),
       "username": localStorage.getItem('username'),
       "token": localStorage.getItem('token'),
-      "email" : localStorage.getItem('email'),
+      "designation" : localStorage.getItem('designation'),
       "role": localStorage.getItem('role')
     }
     return obj;
@@ -45,7 +45,7 @@ export class LocalStorageService {
       "username": "",
       "token": "",
       "role": "",
-      "email": ""
+      "designation": ""
     };
   }
 

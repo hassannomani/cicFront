@@ -29,6 +29,8 @@ export class ListInventoryComponent implements OnInit{
   inventorylist : any = []
   displayedColumns: any = []
   imageArr: any = []
+  dg: boolean= false
+  admin: boolean = false
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
@@ -44,6 +46,12 @@ export class ListInventoryComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadInventory()
+    let localstore = this.localstorageservc.getStorageItems()
+    let designation = localstore.designation!=null?JSON.parse(localstore.designation):""
+    if(designation=="Director General")
+      this.dg=true
+    else if(designation=="Assistant Programmer")
+      this.admin = true
   }
 
   loadInventory(){

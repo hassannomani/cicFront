@@ -15,10 +15,10 @@ export class ToolbarComponent implements OnInit{
   isLoggedIn: boolean = false;
   isAdmin: boolean = false
   isViewer: boolean = false
-  isAgent: boolean = false;
+  isUser: boolean = false;
   isRepresentative: boolean = false;
   unread: number = 0
-  role: string = ""
+  designation: string = ""
   username: string = ""
   constructor(
     
@@ -32,22 +32,22 @@ export class ToolbarComponent implements OnInit{
       console.log(local)
       if(local.token==""||local.token==null){
         this.isLoggedIn = false;
-        this.role=""
+        this.designation=""
         this.username=""
       }
       else{
 
         this.isLoggedIn = true;
-        let role = local.role!=null?JSON.parse(local.role):null;
+        let designation = local.designation!=null?JSON.parse(local.designation):null;
 
-        this.role = role
+        this.designation = designation
         this.username  = local.username?JSON.parse(local.username): ""
        
 
-        if(role=="ROLE_ADMIN")
+        if(designation=="Assistant Programmer")
           this.isAdmin = true
-        else if(role=="ROLE_USER"){
-          this.isAgent = true
+        else{
+          this.isUser = true
           this.isAdmin = false
         }
           
@@ -66,7 +66,7 @@ export class ToolbarComponent implements OnInit{
         // }
       
           console.log(this.isAdmin)
-          console.log(this.isAgent)
+          console.log(this.isUser)
           console.log(this.isRepresentative)
           console.log(this.isViewer)
       }

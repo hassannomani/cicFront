@@ -20,7 +20,7 @@
 
         <div class="col">
           <mat-form-field class="example-full-width">
-            <mat-label>BIN</mat-label>
+            <mat-label>BIN/ Bill of Entry</mat-label>
             <input matInput formControlName="bin">
         </mat-form-field>
 
@@ -91,7 +91,7 @@
                 (click)="viewCaseDetails(element.taxcasedtlsuuid)">
             </app-button>
 
-            <app-button style="margin-left: 10px;"
+            <app-button style="margin-left: 10px;" *ngIf="admin || dg"
               [label]="buttonLabel3"
               [color]="buttonColor2" 
               [type]="buttonType"

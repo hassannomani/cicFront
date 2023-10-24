@@ -35,7 +35,7 @@ export class ListUserComponent implements OnInit{
         if(data.length){
           this.usersArr = data
           this.loaded  = true
-          this.displayedColumns = [ 'username','firstName','lastName','roles','addedDate']
+          this.displayedColumns = [ 'username','firstName','lastName','roles','designation','addedDate']
 
           console.log(this.usersArr)
         } 

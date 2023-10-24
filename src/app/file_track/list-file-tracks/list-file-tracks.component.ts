@@ -47,6 +47,8 @@ export class ListFileTracksComponent implements OnInit{
   activated: boolean = false
   criteria: string = ""
   searched: string = ""
+  dg: boolean= false
+  admin: boolean = false
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
@@ -62,6 +64,13 @@ export class ListFileTracksComponent implements OnInit{
   ngOnInit(): void {
     this.loadAllFile()
     this.loadHouseAndStations()
+    let localstore = this.localstorageservc.getStorageItems()
+    console.log(localstore)
+    let designation = localstore.designation!=null?JSON.parse(localstore.designation):""
+    if(designation=="Director General")
+      this.dg=true
+    else if(designation=="Assistant Programmer")
+      this.admin = true
   }
 
   loadAllFile(){

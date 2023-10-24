@@ -41,7 +41,8 @@ export class ListCaseDetailsComponent implements OnInit{
   activated: boolean = false
   criteria: string = ""
   searched: string = ""
-
+  dg: boolean= false
+  admin: boolean = false
   constructor(
     private router: Router,
     private localstorageservc: LocalStorageService,
@@ -55,6 +56,12 @@ export class ListCaseDetailsComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadAllFile()
+    let localstore = this.localstorageservc.getStorageItems()
+    let designation = localstore.designation!=null?JSON.parse(localstore.designation):""
+    if(designation=="Director General")
+      this.dg=true
+    else if(designation=="Assistant Programmer")
+      this.admin = true
   }
 
   loadAllFile(){

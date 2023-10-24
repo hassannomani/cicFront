@@ -140,7 +140,7 @@
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
-                        <mat-label>BIN</mat-label>
+                        <mat-label>BIN/ Bill of Entry</mat-label>
                         <input matInput formControlName="bin">
                     </mat-form-field>
                 </td>
@@ -313,7 +313,7 @@
             <tr *ngIf="fileRequired">
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>Amount Received By CIC</mat-label>
+                    <mat-label>Revenue Collected By CIC</mat-label>
                     <input matInput  formControlName="cicamount" type="text"  placeholder="Amount Received By CIC">
                     </mat-form-field>
                 </td>
@@ -321,7 +321,7 @@
             <tr *ngIf="fileRequired">
                 <td>
                     <mat-form-field class="example-full-width">
-                    <mat-label>Amount Received By Field Office</mat-label>
+                    <mat-label>Revenue Collected By Field Office</mat-label>
                     <input matInput  formControlName="fieldamount" type="text"  placeholder="Amount Received By Field Office">
                     </mat-form-field>
                 </td>

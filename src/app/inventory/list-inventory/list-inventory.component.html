@@ -35,7 +35,7 @@
         <th mat-header-cell *matHeaderCellDef> Action</th>
         <td mat-cell *matCellDef="let element;"> 
 
-            <app-button style="margin-left: 10px;"
+            <app-button style="margin-left: 10px;" *ngIf="admin || dg"
             [label]="buttonLabel3"
             [color]="buttonColor2" 
             [type]="buttonType"
