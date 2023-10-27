@@ -34,6 +34,16 @@
           </mat-form-field>
         </div>
         <div class="col">
+          <mat-form-field matInput class="example-full-width">
+            <mat-label>Case Status</mat-label>
+            <mat-select matNativeControl formControlName="status">
+                <mat-option value="">--Select--</mat-option>
+                <mat-option  value="Partially Complete">Partially Complete</mat-option>   
+                <mat-option  value="Complete">Complete</mat-option>   
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
           <app-button
             [label]="buttonLabelSr"
             [color]="buttonColor" 

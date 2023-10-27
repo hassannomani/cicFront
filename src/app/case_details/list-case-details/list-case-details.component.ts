@@ -16,6 +16,7 @@ export class ListCaseDetailsComponent implements OnInit{
   searchbox= new FormGroup({
     'taxpayername':  new FormControl(null,[]),
     'io':  new FormControl(null,[]),
+    'status':  new FormControl(null,[]),
     'tinno':  new FormControl(null,[Validators.pattern("^[0-9]*$")]),
     'bin':  new FormControl(null,[Validators.pattern("^[0-9]*$")])
   })
@@ -136,8 +137,9 @@ export class ListCaseDetailsComponent implements OnInit{
     let tin = this.searchbox.value['tinno']
     let bin = this.searchbox.value['bin']
     let io = this.searchbox.value['io']
+    let status = this.searchbox.value['status']
 
-    if(name!=null&&tin==null&&bin==null&&io==null){
+    if(name!=null&&tin==null&&bin==null&&io==null&&status==null){
       this.searchServ.case_name(name).subscribe({
         next: (data) => {
           this.successHandler(data,"Name",name)
@@ -147,7 +149,7 @@ export class ListCaseDetailsComponent implements OnInit{
         }
       })
 
-    }else if(name==null&&tin!=null&&bin==null&&io==null){
+    }else if(name==null&&tin!=null&&bin==null&&io==null&&status==null){
 
       this.searchServ.case_tin(tin).subscribe({
         next: (data) => {
@@ -158,7 +160,7 @@ export class ListCaseDetailsComponent implements OnInit{
         }
       })
 
-    }else if(name==null&&tin==null&&bin!=null&&io==null){
+    }else if(name==null&&tin==null&&bin!=null&&io==null&&status==null){
 
       this.searchServ.case_bin(bin).subscribe({
         next: (data) => {
@@ -168,11 +170,21 @@ export class ListCaseDetailsComponent implements OnInit{
           this.failureHandler(e);         
         }
       })
-    }else if(name==null&&tin==null&&bin==null&&io!=null){
+    }else if(name==null&&tin==null&&bin==null&&io!=null&&status==null){
 
       this.searchServ.case_io(io).subscribe({
         next: (data) => {
-          this.successHandler(data, "BIN",bin)
+          this.successHandler(data, "Io",io)
+        },
+        error: (e) => {
+          this.failureHandler(e);         
+        }
+      })
+    }else if(name==null&&tin==null&&bin==null&&io==null&&status!=null){
+
+      this.searchServ.case_status(status).subscribe({
+        next: (data) => {
+          this.successHandler(data, "Status",status)
         },
         error: (e) => {
           this.failureHandler(e);         

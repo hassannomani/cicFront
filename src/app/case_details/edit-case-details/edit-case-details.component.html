@@ -211,6 +211,18 @@
             </tr>
             <tr>
                 <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>Case Status</mat-label>
+                        <mat-select matNativeControl required formControlName="status">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option  value="Partially Complete">Partially Complete</mat-option>   
+                            <mat-option  value="Complete">Complete</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <mat-form-field class="example-full-width">
                     <mat-label>Comment</mat-label>
                     <input matInput  formControlName="comment" type="text"  placeholder="IO">

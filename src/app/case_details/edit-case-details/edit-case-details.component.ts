@@ -23,7 +23,7 @@ export class EditCaseDetailsComponent implements OnInit{
   addCaseDetails = new FormGroup({
     'taxcasedtlsuuid':  new FormControl(''),
     'taxpayername':  new FormControl(''),
-    'tinno':  new FormControl('',[Validators.required]),
+    'tinno':  new FormControl(''),
     'fileno':  new FormControl(''),
     'tinnos': this.fb.array([]),
     'tinmultiple':  new FormControl(''),
@@ -240,6 +240,7 @@ export class EditCaseDetailsComponent implements OnInit{
     this.addCaseDetails.get('filetype')?.setValue(this.caseDetails.filetype)
     this.addCaseDetails.get('cicamount')?.setValue(this.caseDetails.cicamount)
     this.addCaseDetails.get('fieldamount')?.setValue(this.caseDetails.fieldamount)
+    this.addCaseDetails.get('status')?.setValue(this.caseDetails.status)
   }
 
 }

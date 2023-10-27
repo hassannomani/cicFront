@@ -326,6 +326,19 @@
                     </mat-form-field>
                 </td>
             </tr>
+            
+            <tr *ngIf="fileRequired">
+                <td>
+                    <mat-form-field appearance="fill" matInput class="example-full-width">
+                        <mat-label>Case Status</mat-label>
+                        <mat-select matNativeControl required formControlName="status">
+                            <mat-option value="">--Select--</mat-option>
+                            <mat-option  value="Partially Complete">Partially Complete</mat-option>   
+                            <mat-option  value="Complete">Complete</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
 
             <tr *ngIf="fileRequired">
                 <td>

@@ -19,8 +19,8 @@ export class AddFileTrackComponent implements OnInit{
 
   addFileTrackDetails = new FormGroup({
     'taxpayername':  new FormControl(''),
-    'fileno':  new FormControl('',[Validators.required]),
-    'tin':  new FormControl('',[Validators.required]),
+    'fileno':  new FormControl(''),
+    'tin':  new FormControl(''),
     'bin':  new FormControl(''),
     'nid':  new FormControl(''),
     'customshouse':  new FormControl(''),

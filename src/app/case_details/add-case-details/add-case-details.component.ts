@@ -25,7 +25,7 @@ export class AddCaseDetailsComponent implements OnInit{
   addCaseDetails = new FormGroup({
     'taxpayername':  new FormControl(''),
     'fileno':  new FormControl(''),
-    'tinno':  new FormControl('',[Validators.required]),
+    'tinno':  new FormControl(''),
     'tinnos': this.fb.array([]),
     'tinmultiple':  new FormControl(''),
     'nidno':  new FormControl(''),
@@ -104,8 +104,7 @@ export class AddCaseDetailsComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.localStore = this.localstorageservc.getStorageItems()
-    this.createdBy = JSON.parse(this.localStore.id)
+    
   }
 
   caseDetailsSave(){
@@ -117,7 +116,6 @@ export class AddCaseDetailsComponent implements OnInit{
     string+=tinnos[i].tin+","+tinnos[i].name+","
     if(string.length)
     this.addCaseDetails.value['tinno'] = this.addCaseDetails.value['tinno']+","+ string.substring(0,(string.length-1))
-    this.addCaseDetails.value['status']='1'
     this.addCaseDetails.value['createdby']=this.createdBy
     
     let io: any

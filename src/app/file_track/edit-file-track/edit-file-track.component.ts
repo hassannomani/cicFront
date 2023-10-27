@@ -18,9 +18,9 @@ export class EditFileTrackComponent implements OnInit{
 
   editFileTrackDetails = new FormGroup({
     'taxfileuuid' :  new FormControl(''),
-    'taxpayername':  new FormControl('',[Validators.required]),
+    'taxpayername':  new FormControl(''),
     'fileno':  new FormControl(''),
-    'tin':  new FormControl('',[Validators.required]),
+    'tin':  new FormControl(''),
     'bin':  new FormControl(''),
     'nid':  new FormControl(''),
     'customshouse':  new FormControl(''),
