@@ -41,7 +41,8 @@
     <p>NID: {{caseDetails.nidno}}</p>
     <p>RJSC: {{caseDetails.rjsc}}</p>
     <p>Date of Receiving File from field office : {{caseDetails.dateofcompletion | date}}</p>
-    <p>Investigation Required to be taken?: {{caseDetails.otherinvestigation }}</p>
+    <p>Investigation Required to be taken?: {{caseDetails.otherinvestigation==""||caseDetails.otherinvestigation==null?"No":"Yes"}}</p>
+    <p>Any other investigation?: {{caseDetails.otherinvestigation}}</p>
     <p>Date of authorization and initiation: {{caseDetails.fileinitdate | date}}</p>
     <p>File Type : {{caseDetails.filetype}}</p>
     <p>Bank Search Date: {{caseDetails.banksearchdate | date}}</p>
