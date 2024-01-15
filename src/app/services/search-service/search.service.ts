@@ -3,21 +3,27 @@ import { Observable, ReplaySubject, Subject, tap } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { CommonService } from '../common-service/common.service';
+import { environmentProd } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
 
-  private urlcase : string ='http://localhost:8080/api/case-details-search/';
-  private urlfile : string ='http://localhost:8080/api/file-track-search/';
+  private urlcase : string ='';
+  private urlfile : string ='';
 
 
   constructor(
     private http: HttpClient,
     private localStorageServc: LocalStorageService,
     private commonService: CommonService
-  ) { }
+  ) {
+    let temp = environment.production? environmentProd.apiUrl: environment.apiUrl
+    this.urlcase = temp+"api/case-details-search/"
+    this.urlfile = temp+"api/file-track-search/"
+   }
 
   returnHTTPOptions(){
     const headerObj = this.commonService.httpReturner()

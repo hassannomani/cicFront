@@ -1,21 +1,26 @@
+import { environmentProd } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, Subject, tap } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { CommonService } from '../common-service/common.service';
-
 @Injectable({
   providedIn: 'root'
 })
 export class CaseDetailsService {
 
-  private url : string ='http://localhost:8080/api/case-details/';
+  private url : string ='';
+  //private url : string ='http://localhost:8080/api/case-details/';
 
   constructor(
     private http: HttpClient,
     private localStorageServc: LocalStorageService,
     private commonService: CommonService
-  ) { }
+  ) { 
+    let temp = environment.production? environmentProd.apiUrl: environment.apiUrl
+    this.url = temp+"api/case-details/"
+  }
 
   addCaseDetails(formData: any): Observable<any>{
 

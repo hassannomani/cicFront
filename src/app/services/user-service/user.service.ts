@@ -3,6 +3,8 @@ import { Observable, ReplaySubject, Subject, tap } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { CommonService } from '../common-service/common.service';
+import { environmentProd } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 
 export interface Roles {
   name:String
@@ -23,7 +25,18 @@ export class UserService {
     private http: HttpClient,
     private localStorageServc: LocalStorageService,
     private commonService: CommonService
-  ) {}
+  ) {
+    let temp = environment.production? environmentProd.apiUrl: environment.apiUrl
+    this.url = temp+'api/users/roles';
+    this.urladd = temp+'api/users/add';
+    this.url_list = temp+'api/users/all';
+    this.url_single = temp+'api/users/user/';
+    this.url_pending_all = temp+'api/users/pending-all';
+    this.url_reject_user = temp+'api/users/reject/';
+    this.url_reject_representative_tin = temp+'api/users/tinreject/';
+    this.url_assign_approve =  temp+'api/users/assign/'
+
+  }
   
 
 

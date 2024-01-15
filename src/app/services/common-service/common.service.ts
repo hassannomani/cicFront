@@ -2,26 +2,46 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, Subject, tap } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from '../local-storage/local-storage.service';
-
+import { environmentProd } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
+  private urlfile : string ='';
+  private urlPhoto : string ='';
+  private urlfileget : string ='';
+  private urlPhotoget : string ='';
+  private common_base_house : string ='';
+  private common_base_lcstation : string ='';
+  private common_base_inventory : string ='';
+  private common_base_jurisdiction : string ='';
+
   constructor(
     private http: HttpClient,
     private localStorageServc: LocalStorageService
-  ) { }
+  ) { 
+    let temp = environment.production? environmentProd.apiUrl: environment.apiUrl
+    this.urlfile = temp+"api/common/file/"
+    this.urlPhoto = temp+"api/common/photo/"
+    this.urlfileget = temp+"api/common/file/"
+    this.urlPhoto = temp+"api/common/photo/"
+    this.common_base_house = temp+"api/common/house/"
+    this.common_base_lcstation = temp+"api/common/lcstation/"
+    this.common_base_inventory = temp+"api/common/inventory/"
+    this.common_base_jurisdiction = temp+"api/common/jurisdiction/"
 
-  private common_base_house : string = 'http://localhost:8080/api/house/'
-  private common_base_lcstation : string = 'http://localhost:8080/api/lcstation/'
-  private common_base_inventory : string = 'http://localhost:8080/api/inventory/'
-  private common_base_jurisdiction : string = 'http://localhost:8080/api/jurisdiction/'
-  private urlfile : string ='http://localhost:8080/api/common/file';
-  private urlPhoto : string ='http://localhost:8080/api/common/photo';
-  private urlfileget : string ='http://localhost:8080/api/common/file/';
-  private urlPhotoget : string ='http://localhost:8080/api/common/photo/';
-  private urletin : string ='http://localhost:8080/api/etin/tin/';
+  }
+
+ // private common_base_house : string = 'http://localhost:8080/api/house/'
+  //private common_base_lcstation : string = 'http://localhost:8080/api/lcstation/'
+ // private common_base_inventory : string = 'http://localhost:8080/api/inventory/'
+  //private common_base_jurisdiction : string = 'http://localhost:8080/api/jurisdiction/'
+  //private urlfile : string ='http://localhost:8080/api/common/file';
+ // private urlPhoto : string ='http://localhost:8080/api/common/photo';
+ // private urlfileget : string ='http://localhost:8080/api/common/file/';
+  //private urlPhotoget : string ='http://localhost:8080/api/common/photo/';
 
 
   httpReturner(): any{
