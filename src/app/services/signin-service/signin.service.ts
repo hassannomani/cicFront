@@ -21,7 +21,7 @@ export class SigninService {
   ) {
     let temp = environment.production? environmentProd.apiUrl: environment.apiUrl
     this.url = temp + "api/auth/signin"
-    this.url = temp + "api/auth/logout"
+    this.url1 = temp + "api/auth/logout"
   }
   postVerifyUsers(formData:any): Observable<any>{
     const headers = { 'content-type': 'application/json'}  

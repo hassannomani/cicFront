@@ -23,14 +23,13 @@ export class CommonService {
     private localStorageServc: LocalStorageService
   ) { 
     let temp = environment.production? environmentProd.apiUrl: environment.apiUrl
-    this.urlfile = temp+"api/common/file/"
-    this.urlPhoto = temp+"api/common/photo/"
-    this.urlfileget = temp+"api/common/file/"
-    this.urlPhoto = temp+"api/common/photo/"
-    this.common_base_house = temp+"api/common/house/"
-    this.common_base_lcstation = temp+"api/common/lcstation/"
-    this.common_base_inventory = temp+"api/common/inventory/"
-    this.common_base_jurisdiction = temp+"api/common/jurisdiction/"
+    this.urlfile = temp+"api/common/file"
+    this.urlPhoto = temp+"api/common/photo"
+ 
+    this.common_base_house = temp+"api/house/"
+    this.common_base_lcstation = temp+"api/lcstation/"
+    this.common_base_inventory = temp+"api/inventory/"
+    this.common_base_jurisdiction = temp+"api/jurisdiction/"
 
   }
 
